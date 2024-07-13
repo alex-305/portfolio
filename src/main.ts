@@ -5,6 +5,8 @@ import * as directives from 'vuetify/directives'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
+import { fa } from 'vuetify/iconsets/fa'
+import '@fortawesome/fontawesome-free/css/all.css'
 
 import App from './App.vue'
 import router from './router'
@@ -16,7 +18,8 @@ const vuetify = createVuetify({
     defaultSet: 'mdi',
     aliases,
     sets: {
-      mdi
+      mdi,
+      fa
     }
   }
 })
