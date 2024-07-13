@@ -1,11 +1,19 @@
 <template>
   <div>
     <v-container>
-      <v-card>
-        <v-img class="mx-auto" height="150" width="300" src=""></v-img>
-        <v-card-title class="d-flex justify-center font-weight-bold">{{
-          props.item.title
-        }}</v-card-title>
+      <v-card link class="relative" color="grey-darken-4">
+        <v-img
+          class="mx-auto w-100"
+          height="200"
+          cover
+          width="300"
+          :src="props.item.coverImageURL"
+        ></v-img>
+        <v-card-title
+          class="d-flex justify-center position-absolute rounded-lg pa-0"
+          style="color: black; transform: translate(0%, -100%)"
+          >{{ props.item.title }}</v-card-title
+        >
         <div class="bg-surface-light">
           <div class="d-inline-flex">
             <v-card-text>Tags:</v-card-text>
@@ -35,4 +43,8 @@ const props = defineProps<{
 }>()
 </script>
 
-<style scoped></style>
+<style scoped>
+.gwng {
+  color: #0000005b;
+}
+</style>
