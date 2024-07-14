@@ -12,13 +12,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  name: {
-    type: string
-    required: true
-  }
-  icon: {
-    type: string
-    required: true
-  }
+  name: string
+  icon: string
 }>()
 </script>
