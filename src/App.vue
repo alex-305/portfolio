@@ -8,6 +8,9 @@
         <div>
           <RouterView />
         </div>
+        <div>
+          <Footer />
+        </div>
       </v-container>
     </v-main>
   </v-app>
@@ -15,6 +18,7 @@
 
 <script setup lang="ts">
 import Navbar from '@/components/NavBar.vue'
+import Footer from './components/FooterComponent.vue'
 </script>
 
 <style scoped></style>
