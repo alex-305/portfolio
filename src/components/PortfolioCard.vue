@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentItemCard :tags="props.item.tags">
+    <ContentItemCard link :tags="props.item.tags">
       <v-img
         class="mx-auto w-100"
         height="200"
@@ -19,6 +19,7 @@
 
 <script setup lang="ts">
 import type { PortfolioItem } from '@/types/PortfolioItem'
+import ContentItemCard from '@/components/ContentItemCard.vue'
 
 const props = defineProps<{
   item: PortfolioItem
