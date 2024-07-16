@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
+    "deploy": "aws s3 sync ./dist s3://alexgonz.dev",
+    "build-deploy": "npm run build && npm run deploy",
     "test:unit": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
