@@ -15,7 +15,7 @@ import BlogCard from '@/components/BlogCard.vue'
 import type { BlogPost } from '@/types/BlogPost'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-let posts: Ref<BlogPost[]> = ref([
+const posts: Ref<BlogPost[]> = ref([
   {
     id: 1,
     title: 'First Blog Post',
@@ -27,12 +27,14 @@ let posts: Ref<BlogPost[]> = ref([
   {
     id: 2,
     title: 'Second Blog Post',
+    content: "something something...",
     date: new Date(),
     tags: ['Game']
   },
   {
     id: 3,
     title: 'Third Thing',
+    content: "idk a third blog",
     date: new Date(),
     tags: ['Website']
   }

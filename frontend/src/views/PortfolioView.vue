@@ -12,7 +12,8 @@
 import PortfolioCard from '@/components/PortfolioCard.vue'
 import type { PortfolioItem } from '@/types/PortfolioItem'
 import { ref } from 'vue'
-let p: ref<PortfolioItem[]> = ref([
+import type { Ref } from 'vue'
+let p: Ref<PortfolioItem[]> = ref([
   {
     id: 1,
     title: 'First sample portfolio',
