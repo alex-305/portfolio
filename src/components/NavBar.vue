@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card variant="text" class="d-flex flex-row justify-center">
-      <NavBtn name="portfolio" icon="mdi-projector-screen">Projects</NavBtn>
+      <NavBtn name="projects" icon="mdi-projector-screen">Projects</NavBtn>
       <v-hover>
         <v-card @click="ToHome" variant="tonal" class="d-flex justify-center align-center" color="primary">
           <div v-if="!isMobile" class="cursor-pointer text-h2 ma-3">Alex Gonzalez</div>
