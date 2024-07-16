@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="ax-0" color="indigo-lighten-2">
+  <v-footer class="ax-0" color="primary">
     <v-row justify="center" no-gutters>
       <v-btn
         v-for="link in links"
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { SocialLink } from '@/types/SocialLink'
+import type { SocialLink } from '@/types/SocialLink'
 const links: SocialLink[] = [
   {
     link: 'https://github.com/alex-305',
