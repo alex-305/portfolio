@@ -19,10 +19,11 @@ const projects:Ref<PortfolioItem[]> = ref([])
 const dataLoaded = ref(false)
 
 const fetchData = async() => {
-  const data = await queryContent('/projects').findOne()
+  const { data } = await useAsyncData('projects',() => queryContent('/projects').findOne())
+
   console.log(data)
-  if(data && Array.isArray(data.body)) {
-    return data.body.map((item:any) => ({
+  if(data.value && Array.isArray(data.value.projects)) {
+    return data.value.projects.map((item:any) => ({
       id: item.id,
       title: item.title,
       coverImageURL: item.coverImageURL,

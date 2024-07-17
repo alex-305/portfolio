@@ -4,7 +4,9 @@
       <v-card-title class="d-flex justify-center rounded-lg pa-0">{{
         props.post.title
       }}</v-card-title>
-      <v-card-text class="overflow-elipsis">{{ props.post.content }}</v-card-text>
+      <v-card-text class="overflow-elipsis">
+        <ContentRenderer :value="props.post.content"/>
+      </v-card-text>
     </ContentItemCard>
   </div>
 </template>
