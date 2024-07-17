@@ -5,8 +5,8 @@
     :to="{ name: props.name }"
     class="mx-3 my-auto"
   >
-  <v-icon :icon="props.icon"/>
-    <slot v-if="!isMobile"></slot>
+  <v-icon v-if="props.icon!=''" :icon="props.icon"/>
+    <slot v-if="isWideEnough || props.icon ==''"></slot>
   </v-btn>
 </template>
 
@@ -14,15 +14,15 @@
 import { computed } from 'vue';
 import { useDisplay } from 'vuetify'
 
-const { mobile } = useDisplay()
+const { width } = useDisplay()
 
-const isMobile = computed((): boolean => {
-  return mobile.value
-})
+const isWideEnough = computed(() => { return width.value >= 500})
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   name: string
-  icon: string
-}>()
+  icon?: string
+}>(), {
+  icon:''
+})
 
 </script>
