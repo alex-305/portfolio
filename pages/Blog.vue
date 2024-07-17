@@ -11,10 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import BlogCard from '@/components/BlogCard.vue'
-import type { BlogPost } from '@/types/BlogPost'
-import { ref } from 'vue'
-import type { Ref } from 'vue'
+import BlogCard from '~/components/BlogCard.vue';
+import type { BlogPost } from '../types/BlogPost'
 const posts: Ref<BlogPost[]> = ref([
   {
     id: 1,

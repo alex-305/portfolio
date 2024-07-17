@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div><ContentDoc /></div>
 </template>
 
 <script setup lang="ts">

@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import type { BlogPost } from '@/types/BlogPost'
-import ContentItemCard from './ContentItemCard.vue'
+import ContentItemCard from './ContentItemCard.vue';
+import type { BlogPost } from '../types/BlogPost'
 
 const props = defineProps<{
   post: BlogPost

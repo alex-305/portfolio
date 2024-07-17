@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SocialLink } from '@/types/SocialLink'
+import type { SocialLink } from '../types/SocialLink'
 const links: SocialLink[] = [
   {
     link: 'https://github.com/alex-305',

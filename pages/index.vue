@@ -10,6 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import ProgrammingSkills from '@/components/AboutDropdowns/ProgrammingSkillsDropdown.vue'
-import Education from '@/components/AboutDropdowns/EducationDropdown.vue'
+import Education from '~/components/EducationDropdown.vue';
+import ProgrammingSkills from '~/components/ProgrammingSkillsDropdown.vue';
 </script>
