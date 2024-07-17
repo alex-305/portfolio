@@ -11,7 +11,7 @@
               contained
               absolute
             >
-              <v-btn class="px-3" color="tertiary" :to="props.to" prepend-icon="mdi-eye-outline"
+              <v-btn class="px-3" color="tertiary" :href="props.to" prepend-icon="mdi-eye-outline"
                 >View</v-btn
               >
               <v-btn
