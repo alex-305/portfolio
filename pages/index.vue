@@ -2,7 +2,7 @@
   <div>
     <v-card class="pa-3">
       <v-expansion-panels variant="accordion" multiple>
-        <Education />
+        <!-- <Education /> -->
         <ProgrammingSkills />
       </v-expansion-panels>
     </v-card>
@@ -10,6 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import Education from '~/components/EducationDropdown.vue';
+// import Education from '~/components/EducationDropdown.vue';
 import ProgrammingSkills from '~/components/ProgrammingSkillsDropdown.vue';
 </script>
