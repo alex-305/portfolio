@@ -1,12 +1,14 @@
 <template>
   <div>
-    <v-row>
+    <v-row v-if="dataLoaded">
       <v-col v-for="post in posts" :key="post.title+post.date" cols="12">
         <div class="h-100">
           <BlogCard :post="post" />
         </div>
       </v-col>
     </v-row>
+    <div v-else-if="errorOccured" style="color: red;">Error occured.</div>
+    <div v-else>Loading blog posts...</div>
   </div>
 </template>
 
@@ -15,6 +17,7 @@ import BlogCard from '~/components/BlogCard.vue';
 import type { BlogPost } from '../types/BlogPost'
 const posts: Ref<BlogPost[]> = ref([])
 const dataLoaded = ref(false)
+const errorOccured = ref(false)
 
 const fetchData = async():Promise<BlogPost[]> => {
   const { data } = await useAsyncData('blogs',() => queryContent('/blog').find())
@@ -35,10 +38,12 @@ const fetchData = async():Promise<BlogPost[]> => {
 
 onMounted(async() => {
   try {
+    errorOccured.value = false
     dataLoaded.value = false
     posts.value = await fetchData()
     dataLoaded.value = true
   } catch(error) {
+    errorOccured.value = true
     console.error(error)
   }
 })

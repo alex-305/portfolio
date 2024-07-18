@@ -5,7 +5,7 @@
         <ProjectCard :item="item" />
       </v-col>
     </v-row>
-    <div v-else-if="projects.length!=0" class="text-h5">No projects exist yet.</div>
+    <div style="color: red;" v-else-if="errorOccured">Error occured.</div>
     <div v-else>Loading projects...</div>
   </div>
 </template>
@@ -17,6 +17,7 @@ import type { PortfolioItem } from '../types/PortfolioItem';
 
 const projects:Ref<PortfolioItem[]> = ref([])
 const dataLoaded = ref(false)
+const errorOccured = ref(false)
 
 const fetchData = async() => {
   const { data } = await useAsyncData('projects',() => queryContent('/projects').findOne())
@@ -35,10 +36,12 @@ const fetchData = async() => {
 
 onMounted(async() => {
   try {
+    errorOccured.value = false
     dataLoaded.value = false
     projects.value = await fetchData()
     dataLoaded.value = true
   } catch(error) {
+    errorOccured.value = true
     console.error(error)
   }
 
