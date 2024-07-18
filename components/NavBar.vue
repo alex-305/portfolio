@@ -5,7 +5,6 @@
       <NavBtn route="/"><span v-if="isWideEnough">Alex Gonzalez</span><span v-else>Alex</span></NavBtn>
       <NavBtn route="/blog" icon="mdi-post-outline">Blog</NavBtn>
     </v-card>
-    <v-divider class="my-3"></v-divider>
   </v-container>
 </template>
 

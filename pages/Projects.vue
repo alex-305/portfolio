@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row v-if="dataLoaded && projects.length!=0">
-      <v-col v-for="item in projects" :key="item.id" cols="12" sm="6" md="4">
+      <v-col v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4">
         <ProjectCard :item="item" />
       </v-col>
     </v-row>
@@ -24,7 +24,6 @@ const fetchData = async() => {
   console.log(data)
   if(data.value && Array.isArray(data.value.projects)) {
     return data.value.projects.map((item:any) => ({
-      id: item.id,
       title: item.title,
       coverImageURL: item.coverImageURL,
       tags: item.tags,

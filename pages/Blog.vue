@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col v-for="post in posts" :key="post.id" cols="12">
+      <v-col v-for="post in posts" :key="post.title+post.date" cols="12">
         <div class="h-100">
           <BlogCard :post="post" />
         </div>
@@ -23,7 +23,6 @@ const fetchData = async():Promise<BlogPost[]> => {
   console.log(data)
   if(data.value && Array.isArray(data.value)) {
     return data.value.map((item:any) => ({
-      id: item.id,
       description: item.description,
       date: item.date,
       tags: item.tags,

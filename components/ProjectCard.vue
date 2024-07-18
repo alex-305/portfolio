@@ -8,11 +8,12 @@
         width="300"
         :src="props.item.coverImageURL"
       ></v-img>
+      <div class="d-flex justify-center">
       <v-card-title
-        class="d-flex justify-center position-absolute rounded-lg pa-0"
-        style="color: black; transform: translate(0%, -100%)"
-        >{{ props.item.title }}</v-card-title
-      >
+        class="d-flex justify-center position-absolute rounded-lg pa-0 ma-0"
+        style="color: black; transform: translate(0%, -100%); background-color: #ebebebca; box-shadow: 0px 0px 5px 2px #ebebebca;"
+        >{{ props.item.title }}</v-card-title>
+      </div>
     </ContentItemCard>
   </div>
 </template>
@@ -27,6 +28,6 @@ const props = defineProps<{
 
 <style scoped>
 .gwng {
-  color: #0000005b;
+  color: #ebebebca;
 }
 </style>
