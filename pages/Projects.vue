@@ -34,7 +34,7 @@ const fetchData = async() => {
   return []
 }
 
-onMounted(async() => {
+onBeforeMount(async() => {
   try {
     errorOccured.value = false
     dataLoaded.value = false

@@ -37,7 +37,7 @@ const fetchData = async():Promise<BlogPost[]> => {
   return []
 }
 
-onMounted(async() => {
+onBeforeMount(async() => {
   try {
     errorOccured.value = false
     dataLoaded.value = false
