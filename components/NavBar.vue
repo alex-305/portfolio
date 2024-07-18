@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mb-5">
     <v-card variant="text" class="d-flex flex-row justify-center">
       <NavBtn route="/projects" icon="mdi-projector-screen">Projects</NavBtn>
       <NavBtn route="/"><span v-if="isWideEnough">Alex Gonzalez</span><span v-else>Alex</span></NavBtn>

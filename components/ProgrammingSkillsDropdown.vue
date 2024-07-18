@@ -1,5 +1,5 @@
 <template>
-  <DropDownComponent title="Programming Languages" icon="mdi-laptop">
+  <DropDownComponent title="Programming Languages" icon="mdi-monitor-account">
     <v-list>
       <v-list-item prepend-icon="fa:fa-brands fa-vuejs" title="Vue.js"
       >I have used Vue.js for about a year and have learned a lot about component driven

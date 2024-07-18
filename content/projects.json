@@ -1,7 +1,16 @@
 {
     "projects":[
     {
-        "title": ""
+        "title": "Flappy Blocky",
+        "coverImageURL": "https://img.itch.zone/aW1nLzE2ODg1MDU1LnBuZw==/315x250%23c/%2FpJ0pF.png",
+        "tags": ["Game", "GDScript", "Godot"],
+        "link": "https://alex305.itch.io/flappy-blocky"
+    },
+    {
+        "title": "Isla",
+        "coverImageURL": "https://img.itch.zone/aW1nLzE2ODU2MTk3LnBuZw==/315x250%23c/5TUMEM.png",
+        "tags": ["Game", "GDScript", "Godot", "Art"],
+        "link": "https://alex305.itch.io/isla"
     },
     {
         "title": "Fiesta.pics",
@@ -11,7 +20,7 @@
     },
     {
         "title": "CourseBueno",
-        "coverImageURL": "",
+        "coverImageURL": "https://i.imgur.com/xtrJe7V.png",
         "tags": ["C#", ".NET", ".NET MAUI"],
         "link": "https://github.com/alex-305/coursebueno"
     },

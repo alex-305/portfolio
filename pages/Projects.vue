@@ -6,7 +6,7 @@
       </v-col>
     </v-row>
     <div v-else-if="projects.length!=0" class="text-h5">No projects exist yet.</div>
-    <div v-else>Could not load projects...</div>
+    <div v-else>Loading projects...</div>
   </div>
 </template>
 

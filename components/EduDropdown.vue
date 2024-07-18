@@ -1,5 +1,5 @@
 <template>
-  <DropDownComponent title="Education" icon="mdi-school-outline">
+  <DropDownComponent title="Education" icon="mdi-account-school-outline">
     <div class="d-flex flex-column">
       <div class="d-flex my-3 justify-space-between">
         <span class="text-h4">Christopher Columbus High School</span>
@@ -28,6 +28,6 @@
   </DropDownComponent>
 </template>
   
-<script lang="ts">
+<script setup lang="ts">
 import DropDownComponent from './DropDownComponent.vue';
 </script>

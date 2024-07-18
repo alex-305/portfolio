@@ -5,6 +5,7 @@
         v-for="link in links"
         :key="link.link"
         class="mx-2"
+        target="_blank"
         :href="link.link"
         color="white"
         rounded="xl"
@@ -44,6 +45,11 @@ const links: SocialLink[] = [
     link: 'https://x.com/itsslax',
     name: 'x',
     icon: 'fa:fa-brands fa-x-twitter'
+  },
+  {
+    link: 'mailto:alexgonzdev@proton.me',
+    name: 'alexgonzdev@proton.me',
+    icon: 'mdi-email-outline'
   }
 ]
 </script>

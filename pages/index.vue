@@ -1,20 +1,9 @@
 <template>
   <div>
     <v-card class="pa-3">
-      <div class="ml-3">
-        <div class="text-h4">About Me</div>
-        <v-divider></v-divider>
-        <div class="text-body-1 my-3">
-          &emsp;My name is Alex Gonzalez and I'm a software engineer. My interests are primarily frontend and backend web development. However, I also enjoy game development, database management, and systems programming. 
-          <br><br>&emsp;My passion for computers started when I received a Dell laptop from my parents back in 2014 on my 11th birthday. Originally, I only wanted a laptop so that I could play Minecraft. But the more I got to know how the operating system(Windows 8) worked, the more I expiremented. I began, as many kids do, by running a Minecraft server on LAN that me and my friends could play together when they came over. I soon began paying a monthly cost for some server space so that we could play together online.
-          <br><br>&emsp;It wasn't until I discovered <a target="_blank" href="https://www.spigotmc.org/wiki/about-spigot/">Spigot</a> and the power of plugins that I truly became obsessed. I made countless servers throughout my teenage years with anywhere from 20 to 100 plugins that I spent hours diving into the JSON configuration files of and tinkering with. I made basic HTML and CSS websites that I spent hours carefully crafting. One of my servers even boasted a player count of about 20 at any given time.
-          <br><br>&emsp;I learned a lot about computers throughout those years but for some reason I never tried coding. I guess I felt at the time that it was too difficult and daunting to even get started. I began college with no idea what I wanted to do in my professional life. I decided that I enjoyed business enough to try that out but I wasn't passionate about it. It wasn't until my sophomore year that I realized computers have been the one consistent thing in my life that I have been passionate about.
-          <br><br>&emsp;I took my first programming class in Spring semester of my sophomore year(January 2023) and I instantly fell in love. It felt just like making Minecraft servers and websites all over again. Since then, I've undergone a journey of programming where I haven't stopped learning. I've truly tried to make myself as much of a sponge of information as humanly possible.
-          <br><br>&emsp;I began my journey by learning C++ since it was the language of choice at my university. This is where I first learned how to do basic things such as if statements, for loops, classes, and whatnot. I then learned some Java through an elective class and this is where I made my first GUI application using Java Swing.
-          <br><br>&emsp;Next, I wanted to get back to making websites with the little HTML and CSS I had picked up as a teenager, so I taught myself all about Javascript and web development. I realized that the modern web development landscape had become a sea of web frameworks so I learned Vue.js. This allowed me to make some great user interfaces compared to what I had previously made. I then took a databases class where I learned all about SQL and throughout my time in that class, I also taught myself Golang since we had to do create our own API for our database to interact with. This isn't an exhaustive list of everything I have learned. If you want that, it's down below but this is a good picture of my programming journey.
-        </div>
-      </div>
+      <ProfileCard/>
       <v-expansion-panels variant="accordion" multiple>
+        <AboutMeDropdown/>
         <Education />
         <ProgrammingSkills />
         <LifeSkills/>
@@ -24,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import ProfileCard from '~/components/ProfileCard.vue';
+import AboutMeDropdown from '~/components/AboutMeDropdown.vue';
 import Education from '~/components/EduDropdown.vue';
 import LifeSkills from '~/components/LifeSkills.vue';
 import ProgrammingSkills from '~/components/ProgrammingSkillsDropdown.vue';
