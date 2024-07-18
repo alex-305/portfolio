@@ -14,14 +14,6 @@
               <v-btn class="px-3" color="tertiary" target="_blank" :href="props.to" prepend-icon="mdi-eye-outline"
                 >View</v-btn
               >
-              <v-btn
-                class="px-3"
-                v-if="props.blogLink"
-                color="tertiary"
-                :to="props.blogTo"
-                prepend-icon="mdi-post-outline"
-                >Blog Post</v-btn
-              >
             </v-overlay>
           </v-card>
         </v-hover>
@@ -43,14 +35,10 @@ const props = withDefaults(
   defineProps<{
     tags: string[]
     link?: boolean
-    blogLink?: boolean
-    blogTo?: string
     to?: string
   }>(),
   {
     link: false,
-    blogLink: false,
-    blogTo: '',
     to: ''
   }
 )

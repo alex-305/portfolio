@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row v-if="dataLoaded">
-      <v-col v-for="post in posts" :key="post.title+post.date" cols="12">
+      <v-col class="" v-for="post in posts" :key="post.title+post.date" cols="6">
         <div class="h-100">
           <BlogCard :post="post" />
         </div>
@@ -30,7 +30,8 @@ const fetchData = async():Promise<BlogPost[]> => {
       date: item.date,
       tags: item.tags,
       title: item.title,
-      content: item
+      content: item,
+      path: item._path
     })) as BlogPost[]
   }
   return []

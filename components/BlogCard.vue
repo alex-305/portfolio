@@ -1,10 +1,11 @@
 <template>
   <div>
-    <ContentItemCard :tags="props.post.tags">
-      <v-card-title class="d-flex justify-center rounded-lg pa-0">{{
+    <ContentItemCard link :to="props.post.path" :tags="props.post.tags">
+      <v-card-title class="d-flex text-h3 justify-center rounded-lg pa-0">{{
         props.post.title
       }}</v-card-title>
-      <v-card-text class="overflow-elipsis">
+      <v-divider></v-divider>
+      <v-card-text style="height: 200px;" class="overflow-elipsis">
         <ContentRenderer :value="props.post.content"/>
       </v-card-text>
     </ContentItemCard>

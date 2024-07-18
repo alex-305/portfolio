@@ -5,4 +5,5 @@ export type BlogPost = {
   content: ParsedContent
   date: Date
   tags: string[]
+  path: string
 }
