@@ -26,12 +26,11 @@
           </v-card>
         </v-hover>
         <v-card class="mx-auto rounded-false" v-else><slot></slot></v-card>
-        <div class="bg-surface-light">
+        <div class="noscrollbar bg-surface-light overflow-x-auto" style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
           <div class="d-inline-flex">
             <v-card-text>Tags:</v-card-text>
-            <v-chip color="tertiary" class="ma-auto ml-0 mr-2" v-for="tag in props.tags" :key="tag">
-              {{ tag }}</v-chip
-            >
+              <v-chip color="tertiary" class="ma-auto ml-0 mr-2" v-for="tag in props.tags" :key="tag">
+                {{ tag }}</v-chip>
           </div>
         </div>
       </v-card>
@@ -56,3 +55,11 @@ const props = withDefaults(
   }
 )
 </script>
+
+<style scoped>
+
+.noscrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+</style>
