@@ -17,7 +17,17 @@ export default defineNuxtConfig({
   },
 
   devtools: { enabled: true },
-  modules: ['@nuxt/content'],
+  modules: [
+    '@nuxt/content'
+  ],
+
+  content: {
+    markdown: {
+      anchorLinks: {
+        depth: 1
+      }
+    }
+  },
 
   routeRules: {
     '/': { prerender: true }
