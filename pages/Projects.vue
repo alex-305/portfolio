@@ -20,11 +20,11 @@ const dataLoaded = ref(false)
 const errorOccured = ref(false)
 
 const fetchData = async() => {
-  const { data } = await useAsyncData('projects',() => queryContent('/projects').findOne())
+  const data = await queryContent('/projects').findOne()
 
   console.log(data)
-  if(data.value && Array.isArray(data.value.projects)) {
-    return data.value.projects.map((item:any) => ({
+  if(data && Array.isArray(data.projects)) {
+    return data.projects.map((item:any) => ({
       title: item.title,
       coverImageURL: item.coverImageURL,
       tags: item.tags,

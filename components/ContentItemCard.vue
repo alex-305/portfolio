@@ -11,7 +11,7 @@
               contained
               absolute
             >
-              <v-btn class="px-3" color="tertiary" target="_blank" :href="props.to" prepend-icon="mdi-eye-outline"
+              <v-btn class="px-3" color="tertiary" :target="newTab ?'_blank' : '_self'" :href="props.to" prepend-icon="mdi-eye-outline"
                 >View</v-btn
               >
             </v-overlay>
@@ -36,9 +36,11 @@ const props = withDefaults(
     tags: string[]
     link?: boolean
     to?: string
+    newTab?: boolean
   }>(),
   {
     link: false,
+    newTab: false,
     to: ''
   }
 )

@@ -14,18 +14,18 @@
 
 <script setup lang="ts">
 import BlogCard from '~/components/BlogCard.vue';
-import type { BlogPost } from '../types/BlogPost'
+import type { BlogPost } from '../../types/BlogPost'
 const posts: Ref<BlogPost[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
 
 const fetchData = async():Promise<BlogPost[]> => {
-  const { data } = await useAsyncData('blogs',() => queryContent('/blog').find())
+  const data = await queryContent('blog').find()
 
 
   console.log(data)
-  if(data.value && Array.isArray(data.value)) {
-    return data.value.map((item:any) => ({
+  if(data && Array.isArray(data)) {
+    return data.map((item:any) => ({
       description: item.description,
       date: item.date,
       tags: item.tags,
