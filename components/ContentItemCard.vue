@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <v-card class="mx-auto">
+      <v-card class="mx-auto" elevation="5">
         <v-hover v-if="props.link" v-slot:default="{ isHovering, props: HoverProps }">
           <v-card link v-bind="HoverProps" class="mx-auto rounded-0">
             <slot></slot>
