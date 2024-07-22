@@ -13,7 +13,9 @@
           <v-divider></v-divider>
         </div>
         <main>
+          <div class="px-5">
             <ContentRenderer :value="post.content as ParsedContent"/>
+          </div>
         </main>
     </div>
 </template>

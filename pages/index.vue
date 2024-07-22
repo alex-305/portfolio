@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-card class="pa-3">
-      <ProfileCard/>
+      <div class="d-flex justify-center">
+        <ProfileCard/>
+      </div>
       <v-expansion-panels variant="accordion" multiple>
         <AboutMeDropdown/>
         <Education />
