@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="pa-3">
+    <v-card variant="text" class="pa-3">
       <div class="d-flex justify-center">
         <ProfileCard/>
       </div>
