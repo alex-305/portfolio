@@ -8,12 +8,12 @@
         width="300"
         :src="props.item.coverImageURL"
       ></v-img>
-      <div class="d-flex justify-center">
+      <div class="d-flex position-relative justify-center">
         <div 
-        class="d-flex justify-center position-absolute h-25 px-0 pt-auto ma-0 w-100"
-        style="color: black; transform: translate(0%, -100%); background: linear-gradient(to top, #eeeeee 20%, #eeeeee42 80%, #eeeeee00 100%);">
+        class="d-flex justify-center position-absolute px-0 pt-auto ma-0 w-100"
+        style="color: black; transform: translate(0%, -125%);">
           <v-card-title
-            class="mt-auto d-flex justify-center rounded-lg pa-0 ma-0" style="text-shadow: 0px 0px 2px white;"
+            class="mt-auto d-flex justify-center rounded-lg py-0 px-3 ma-0" style="font-weight: bold;text-shadow: 0px 0px 2px white; background: white; box-shadow: 2px 2px #eeeeee;"
             >{{ props.item.title }}</v-card-title>
         </div>
       </div>
