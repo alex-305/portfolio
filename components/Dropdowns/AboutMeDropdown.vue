@@ -12,6 +12,6 @@
     </DropDownComponent>
   </template>
     
-  <script setup lang="ts">
-  import DropDownComponent from './DropDownComponent.vue';
-  </script>
+<script setup lang="ts">
+import DropDownComponent from '@/components/DropDownComponent.vue';
+</script>

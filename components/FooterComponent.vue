@@ -50,6 +50,11 @@ const links: SocialLink[] = [
     link: 'mailto:alexgonzdev@proton.me',
     name: 'alexgonzdev@proton.me',
     icon: 'mdi-email-outline'
+  },
+  {
+    link: 'https://www.linkedin.com/in/alexgonzalez305/',
+    name: 'LinkedIn',
+    icon: 'fa:fa-brands fa-linkedin'
   }
 ]
 </script>

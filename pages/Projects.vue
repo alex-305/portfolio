@@ -6,7 +6,11 @@
       </v-col>
     </v-row>
     <div style="color: red;" v-else-if="errorOccured">Error occured.</div>
-    <div v-else>Loading projects...</div>
+    <v-row class="d-flex justify-center" v-else>
+      <v-col v-for="i in 6" :key="i" cols="12" sm="6" md="4">
+        <v-skeleton-loader height="250" width="350"></v-skeleton-loader>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -21,7 +25,6 @@ const errorOccured = ref(false)
 
 const fetchData = async() => {
   const data = await queryContent('/projects').findOne()
-
   console.log(data)
   if(data && Array.isArray(data.projects)) {
     return data.projects.map((item:any) => ({

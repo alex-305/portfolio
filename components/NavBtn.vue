@@ -2,6 +2,7 @@
   <v-btn
     color="primary"
     variant="tonal"
+    :ripple="false"
     :to="props.route"
     class="mx-3 my-auto"
     :active="props.active"

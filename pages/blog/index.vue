@@ -8,22 +8,51 @@
       </v-col>
     </v-row>
     <div v-else-if="errorOccured" style="color: red;">Error occured.</div>
-    <div v-else>Loading blog posts...</div>
+    <div v-else>
+      <v-row>
+        <v-col v-for="i in articlesPerPage" :key="i">
+          <v-skeleton-loader height="300" width="500"></v-skeleton-loader>
+        </v-col>
+      </v-row>
+    </div>
+    <div>
+      <v-pagination v-model="pageNum" @click="refetch" :length="pageCount"></v-pagination>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import BlogCard from '~/components/BlogCard.vue';
 import type { BlogPost } from '../../types/BlogPost'
+
+const articlesPerPage = 4
+const pageNum = ref(1)
+const blogCount = ref(0)
+
 const posts: Ref<BlogPost[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
 
+const pageCount = computed(() => {
+  const pageCount = Math.ceil(blogCount.value/articlesPerPage)
+  return pageCount
+})
+
+const fetchCount = async() => {
+  return await queryContent('blog').count()
+}
+
+const refetch = async() => {
+  posts.value = await fetchData()
+  dataLoaded.value = true
+  
+}
+
 const fetchData = async():Promise<BlogPost[]> => {
-  const data = await queryContent('blog').find()
+  errorOccured.value = false
+  dataLoaded.value = false
+  const data = await queryContent('blog').skip(articlesPerPage*(pageNum.value-1)).limit(articlesPerPage).find()
 
-
-  console.log(data)
   if(data && Array.isArray(data)) {
     return data.map((item:any) => ({
       description: item.description,
@@ -39,9 +68,8 @@ const fetchData = async():Promise<BlogPost[]> => {
 
 onBeforeMount(async() => {
   try {
-    errorOccured.value = false
-    dataLoaded.value = false
     posts.value = await fetchData()
+    blogCount.value = await fetchCount()
     dataLoaded.value = true
   } catch(error) {
     errorOccured.value = true
