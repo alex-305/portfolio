@@ -8,7 +8,13 @@
       </v-col>
     </v-row>
     <div v-else-if="errorOccured" style="color: red;">Error occured.</div>
-    <div v-else>Loading blog posts...</div>
+    <div v-else>
+      <v-row>
+        <v-col v-for="i in articlesPerPage" :key="i">
+          <v-skeleton-loader height="300" width="500"></v-skeleton-loader>
+        </v-col>
+      </v-row>
+    </div>
     <div>
       <v-pagination v-model="pageNum" @click="refetch" :length="pageCount"></v-pagination>
     </div>
