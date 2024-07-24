@@ -1,6 +1,6 @@
 <template>
-    <div class="pa-5 w-100 h-100">
-        <v-card class="pa-5 my-5 mb-15" elevation="10">
+    <div class="py-0 px-5 w-100 h-100 ma-0">
+        <v-card class="pa-5 mt-0" elevation="10">
             <div class="d-inline-flex">
                 <v-avatar color="primary" size="200"></v-avatar>
                 <div class="pl-10">
