@@ -1,15 +1,21 @@
 <template>
   <div>
     <v-card variant="text" class="pa-3">
-      <div class="d-flex justify-center">
-        <ProfileCard/>
-      </div>
-      <v-expansion-panels variant="accordion" multiple>
-        <AboutMeDropdown/>
-        <Education />
-        <ProgrammingSkills />
-        <LifeSkills/>
-      </v-expansion-panels>
+      <v-row>
+        <v-col rows="6">
+          <div class="d-flex justify-center">
+            <ProfileCard/>
+          </div>
+        </v-col>
+        <v-col rows="6">
+          <v-expansion-panels variant="accordion">
+            <AboutMeDropdown/>
+            <Education />
+            <ProgrammingSkills />
+            <LifeSkills/>
+          </v-expansion-panels>
+        </v-col>
+      </v-row>
     </v-card>
   </div>
 </template>
