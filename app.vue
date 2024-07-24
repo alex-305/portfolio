@@ -6,6 +6,7 @@
           <Navbar />
         </div>
         <div>
+          <NuxtLoadingIndicator/>
           <NuxtPage />
         </div>
         <div>
