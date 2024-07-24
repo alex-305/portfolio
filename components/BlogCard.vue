@@ -6,7 +6,7 @@
       }}</v-card-title>
       <v-divider></v-divider>
       <v-card-text style="height: 200px;" class="overflow-elipsis">
-        <ContentRenderer :value="props.post.content as ParsedContent"/>
+        <ContentRenderer :value="props.post.content as ParsedContent" />
       </v-card-text>
     </ContentItemCard>
   </div>
@@ -21,7 +21,6 @@ import type { ParsedContent } from '@nuxt/content';
 const { width } = useDisplay()
 
 const widthHeader = computed(()=> {
-  console.log(width.value)
   if(width.value < 500) return 'h6'
   if(width.value < 1000) return 'h4'
   if(width.value < 2000) return 'h3'
