@@ -9,10 +9,13 @@
         :src="props.item.coverImageURL"
       ></v-img>
       <div class="d-flex justify-center">
-      <v-card-title
-        class="d-flex justify-center position-absolute rounded-lg pa-0 ma-0"
-        style="color: black; transform: translate(0%, -100%); background-color: #ebebebca; box-shadow: 0px 0px 5px 2px #ebebebca;"
-        >{{ props.item.title }}</v-card-title>
+        <div 
+        class="d-flex justify-center position-absolute h-25 px-0 pt-auto ma-0 w-100"
+        style="color: black; transform: translate(0%, -100%); background: linear-gradient(to top, #eeeeee 20%, #eeeeee42 80%, #eeeeee00 100%);">
+          <v-card-title
+            class="mt-auto d-flex justify-center rounded-lg pa-0 ma-0" style="text-shadow: 0px 0px 2px white;"
+            >{{ props.item.title }}</v-card-title>
+        </div>
       </div>
     </ContentItemCard>
   </div>
@@ -28,6 +31,6 @@ const props = defineProps<{
 
 <style scoped>
 .gwng {
-  color: #ebebebca;
+  color: #4e4e4e48;
 }
 </style>
