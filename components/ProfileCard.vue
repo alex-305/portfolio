@@ -1,10 +1,11 @@
 <template>
     <div class="py-0 px-5 w-100 h-100 ma-0">
         <v-card class="pa-5 mt-0" elevation="10">
-            <div class="d-inline-flex">
+            <div :class="{ 'd-inline-flex': isWideEnough, 'd-flex flex-column' : !isWideEnough }" class="align-center justify-center">
+                <div v-if="!isWideEnough" class="text-h4">Alex Gonzalez</div>
                 <v-avatar variant="elevated" text="Alex Gonzalez" color="primary" size="200"><v-img alt="Alex Gonzalez" src="https://i.imgur.com/hnYaUeK.jpeg"/></v-avatar>
-                <div class="pl-10">
-                    <div class="text-h4">Alex Gonzalez</div>
+                <div class="pl-10" :class="{ 'mr-auto' : !isWideEnough}">
+                    <div v-if="isWideEnough" class="text-h4">Alex Gonzalez</div>
                     <dl class="d-flex text-body-2 flex-column">
                         <dt>Born:</dt>
                         <dd>June 17th, 2003</dd>
@@ -21,6 +22,16 @@
         </v-card>
     </div>
 </template>
+
+<script setup lang="ts">
+import { useDisplay } from 'vuetify';
+import { computed } from 'vue';
+
+const { width } = useDisplay()
+
+const isWideEnough = computed(()=> { return width.value > 530})
+
+</script>
 
 <style scoped>
 

@@ -18,7 +18,7 @@ import { useDisplay } from 'vuetify'
 
 const { width } = useDisplay()
 
-const isWideEnough = computed(() => { return width.value >= 500})
+const isWideEnough = computed(() => { return width.value >= 570})
 
 const props = withDefaults(defineProps<{
   route: string

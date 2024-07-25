@@ -18,7 +18,7 @@ const route = useRoute()
 
 const isActive = (path:string) => { return path === route.path }
 
-const isWideEnough = computed(()=> { return width.value > 400})
+const isWideEnough = computed(()=> { return width.value > 460})
 </script>
 
 <style scoped></style>
