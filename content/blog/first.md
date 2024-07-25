@@ -1,15 +1,32 @@
 ---
-id: 1
-title: "First blog post"
-tags: ["For Fun"]
-date: "2024-07-17"
+title: "Making my portfolio website"
+tags: ["For Fun", "Javascript", "Vue.js"]
+date: "2024-07-25"
 ---
-### Hello my name is Alex and this is blog post numero uno.
 
-The world of technology is rapidly evolving, bringing forth a plethora of advancements that reshape our daily lives. From artificial intelligence to blockchain technology, these innovations are not only making processes more efficient but also opening up new avenues for creativity and problem-solving. AI, for instance, is now integral in various fields such as healthcare, finance, and education, providing predictive analytics and personalized experiences. Blockchain, on the other hand, is revolutionizing how we approach security and transparency in transactions, ensuring data integrity and fostering trust in digital interactions.
+### Making of
+&emsp;Making this portfolio website was a very challenging yet fun endeavor. 
+Every time I make a new project, I learn something new.
+This one was no exception. 
+I also genuinely feel like my mindset on programming has changed slightly since working on this project.
+<br><br>
 
-In the realm of web development, the use of modern frameworks and tools has significantly streamlined the creation of dynamic and responsive websites. Frameworks like Vue.js and React.js have gained immense popularity due to their flexibility and ease of use. These frameworks enable developers to build complex applications with reusable components, enhancing both development speed and code maintainability. Additionally, the rise of static site generators and headless CMSs has further simplified content management and delivery, allowing for faster load times and improved performance.
+### Early Stages
 
-Cybersecurity remains a paramount concern as our reliance on digital systems grows. With the increasing frequency and sophistication of cyber attacks, it is crucial for individuals and organizations to adopt robust security measures. This includes implementing multi-factor authentication, regular software updates, and employee training on recognizing phishing attempts. Furthermore, the integration of AI in cybersecurity is proving to be a game-changer, as it can detect anomalies and potential threats in real-time, providing a proactive defense mechanism.
+&emsp;When I first began work on this website, I thought of it like many other projects I had worked on. 
+I first thought about what I wanted. I wanted a place to display my projects and also where I could make blog posts.
+In my mind, this meant let's create an sql database and a backend that communicates that databases' contents to the frontend.
+I quickly realized [(thanks to reddit)](https://www.reddit.com/r/webdev/comments/1e52gps/should_i_host_my_content_statically_or_with_an_api/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) that that was not the best way to go about things. 
+Some problems, such as this one, don't require the most advanced solution but rather the one that works and gets you up and running relatively fast. 
+Thus, I quickly started to scour the internet for better solutions.
+I have been using Vue.js for about a year and have learned Nuxt pretty well too. So when I found [Nuxt/Content](https://content.nuxt.com/), I knew this was the perfect solution.
+<br><br>
 
-Lastly, the future of technology is poised to be even more interconnected and intelligent. The advent of 5G technology is set to revolutionize communication networks, offering unprecedented speed and reliability. This will pave the way for advancements in the Internet of Things (IoT), where everyday objects are interconnected, sharing data and creating a more intuitive and automated environment. Moreover, the continuous development in quantum computing promises to tackle problems deemed unsolvable by classical computers, potentially unlocking new frontiers in science, medicine, and beyond. As we embrace these technological strides, it is imperative to balance innovation with ethical considerations, ensuring a sustainable and equitable future.
+### Learning Nuxt/Content for static site generation
+
+&emsp;Using Nuxt/Content was very straightforward because the documentation was very easy to read and understand.
+I love how simple it makes it for me to post new blogs, add new projects. My blogs are stored as markdown files in a /content/blog directory. My projects are stored in a projects.json file as an array that I just add to. It was very important to me that the process of adding new projects and blogs would be straightforward and I believe I accomplished that.
+<br><br>
+
+### What's next
+&emsp;I now consider this portfolio website ready for production. This, however, doesn't mean it's done. There's still a lot of little features I want to add and some bugs I need to fix. I want to make the chips clickable to filter and see only content that relates to those chips. I also want to add more CSS animations to the website because aesthetics matter. Lastly, I want to make the website better on smaller devices.
