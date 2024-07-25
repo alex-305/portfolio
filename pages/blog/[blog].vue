@@ -14,7 +14,9 @@
         </div>
         <main>
           <div class="px-5">
-            <ContentRenderer :value="post.content as ParsedContent"/>
+            <v-card class="py-5 px-10 mx-2 mt-1 mb-10" elevation="5">
+              <ContentRenderer :value="post.content as ParsedContent"/>
+            </v-card>
           </div>
         </main>
     </div>
