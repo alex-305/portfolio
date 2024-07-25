@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-row v-if="dataLoaded">
-      <v-col class="" v-for="post in posts" :key="post.title+post.date" cols="12" md="6" >
-        <div class="h-100">
+      <v-col class="" v-for="post in posts" :key="post.title+post.date" cols="12" sm="6" md="4" >
+        <div>
           <BlogCard :post="post" />
         </div>
       </v-col>

@@ -1,13 +1,18 @@
 <template>
   <div>
-    <ContentItemCard link :to="props.post.path" :tags="props.post.tags">
-      <v-card-title :class="'text-'+widthHeader" class="d-flex justify-center rounded-lg pa-0">{{
-        props.post.title
-      }}</v-card-title>
-      <v-divider></v-divider>
-      <v-card-text style="height: 200px;" class="overflow-elipsis">
-        <ContentRenderer :value="props.post.content as ParsedContent" />
-      </v-card-text>
+    <ContentItemCard :tags="props.post.tags">
+      <v-card variant="tonal">
+        <div style="height: 300px;" class="d-flex flex-column align-center justify-center">
+          <v-card-title style="white-space: normal; text-align: center; font-weight: bold; text-shadow: 2px 2px 2px #FFFFFF58;" :class="'text-h4'" class="d-flex align-center justify-center rounded-lg py-0 px-2">{{
+            props.post.title
+          }}</v-card-title>
+          <v-card-text>{{ formatDate(props.post.date) }}</v-card-text>
+          <v-divider style="width: 95%;" color="primary" rounded thickness="5"></v-divider>
+          <div class="w-50 h-50">
+            <v-btn block prepend-icon="mdi-page-next-outline" :to="props.post.path" class="mt-5" color="tertiary">Read</v-btn>
+          </div>
+        </div>
+      </v-card>
     </ContentItemCard>
   </div>
 </template>
@@ -16,7 +21,6 @@
 import ContentItemCard from './ContentItemCard.vue';
 import type { BlogPost } from '../types/BlogPost'
 import { useDisplay } from 'vuetify'
-import type { ParsedContent } from '@nuxt/content';
 
 const { width } = useDisplay()
 
@@ -31,4 +35,16 @@ const widthHeader = computed(()=> {
 const props = defineProps<{
   post: BlogPost
 }>()
+
+const formatDate = (date:Date) => {
+  console.log(typeof date)
+  let d = new Date(date)
+  
+  return d.toLocaleDateString('en-US', {
+    month: 'long',
+    day: '2-digit',
+    year: 'numeric'
+  })
+}
+
 </script>
