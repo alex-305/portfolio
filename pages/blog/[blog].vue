@@ -39,10 +39,8 @@ const dataLoaded = ref(false)
 const errorOccured = ref(false)
 
 const fetchData = async():Promise<BlogPost> => {
-  console.log("path: " + path)
   const data = await queryContent(path).findOne()
 
-  console.log(data)
     return {
         title: data.title,
         date: data.date,

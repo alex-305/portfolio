@@ -25,7 +25,6 @@ const errorOccured = ref(false)
 
 const fetchData = async() => {
   const data = await queryContent('/projects').findOne()
-  console.log(data)
   if(data && Array.isArray(data.projects)) {
     return data.projects.map((item:any) => ({
       title: item.title,
