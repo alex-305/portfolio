@@ -1,0 +1,39 @@
+{
+"links": [
+    {
+        "link": "https://github.com/alex-305",
+        "name": "Github",
+        "icon": "fa:fa-brands fa-github"
+    },
+    {
+        "link": "https://alex305.itch.io",
+        "name": "Itch.io",
+        "icon": "fa:fa-brands fa-itch-io"
+    },
+    {
+        "link": "https://x.com/itsslax",
+        "name": "X",
+        "icon": "fa:fa-brands fa-x-twitter"
+    },
+    {
+        "link": "https://www.linkedin.com/in/alexgonzalez305/",
+        "name": "LinkedIn",
+        "icon": "fa:fa-brands fa-linkedin"
+    },
+    {
+        "link": "https://www.instagram.com/alex.gonz__/",
+        "name": "Instagram",
+        "icon": "fa:fa-brands fa-instagram"
+    },
+    {
+        "link": "https://www.reddit.com/user/SoldierAlexGame/",
+        "name": "Reddit",
+        "icon": "fa:fa-brands fa-reddit"
+    },
+    {
+        "link": "https://www.youtube.com/c/Slax305",
+        "name": "YouTube",
+        "icon": "fa:fa-brands fa-youtube"
+    }
+  ]
+}

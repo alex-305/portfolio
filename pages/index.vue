@@ -3,13 +3,16 @@
     <div>
       <v-card variant="text" class="pa-3">
         <v-row>
-          <v-col rows="6">
+          <v-col cols="5">
             <div class="d-flex justify-center">
               <ProfileCard/>
             </div>
+            <div class="mt-10">
+              <SocialsComponent/>
+            </div>
           </v-col>
-          <v-col rows="6">
-            <v-card elevation="10" class="mr-2">
+          <v-col cols="7">
+            <v-card elevation="10" class="mx-2 mb-3">
               <v-expansion-panels variant="accordion">
                 <AboutMeDropdown/>
                 <Education />
@@ -26,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import SocialsComponent from '~/components/SocialsComponent.vue';
 import ProfileCard from '@/components/ProfileCard.vue';
 import HobbiesDropdown from '~/components/Dropdowns/HobbiesDropdown.vue';
 import AboutMeDropdown from '@/components/Dropdowns/AboutMeDropdown.vue';
