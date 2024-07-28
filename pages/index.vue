@@ -3,7 +3,7 @@
     <div>
       <v-card variant="text" class="pa-3">
         <v-row>
-          <v-col cols="5">
+          <v-col lg="5">
             <div class="d-flex justify-center">
               <ProfileCard/>
             </div>
@@ -11,7 +11,7 @@
               <SocialsComponent/>
             </div>
           </v-col>
-          <v-col cols="7">
+          <v-col lg="7">
             <v-card elevation="10" class="mx-2 mb-3">
               <v-expansion-panels variant="accordion">
                 <AboutMeDropdown/>
