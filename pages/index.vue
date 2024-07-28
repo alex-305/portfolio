@@ -9,13 +9,15 @@
             </div>
           </v-col>
           <v-col rows="6">
-            <v-expansion-panels variant="accordion">
-              <AboutMeDropdown/>
-              <Education />
-              <ProgrammingSkills />
-              <LifeSkills/>
-              <HobbiesDropdown/>
-            </v-expansion-panels>
+            <v-card elevation="10" class="mr-2">
+              <v-expansion-panels variant="accordion">
+                <AboutMeDropdown/>
+                <Education />
+                <ProgrammingSkills />
+                <LifeSkills/>
+                <HobbiesDropdown/>
+              </v-expansion-panels>
+            </v-card>
           </v-col>
         </v-row>
       </v-card>
