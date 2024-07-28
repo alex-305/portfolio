@@ -1,11 +1,15 @@
 <template>
-  <v-container class="mb-5">
-    <v-card variant="text" class="d-flex flex-row justify-center">
-      <NavBtn route="/projects" :active="isActive('/projects')" icon="mdi-projector-screen">Projects</NavBtn>
-      <NavBtn route="/" :active="isActive('/')"><span v-if="isWideEnough">Alex Gonzalez</span><span v-else>Alex</span></NavBtn>
-      <NavBtn route="/blog" :active="isActive('/blog')" icon="mdi-post-outline">Blog</NavBtn>
-    </v-card>
-  </v-container>
+  <ClientOnly>
+    <v-container class="mb-5">
+      <v-card variant="text" class="d-flex flex-row justify-center">
+        <NavBtn route="/projects" :active="isActive('/projects')" icon="mdi-projector-screen">Projects</NavBtn>
+        <NavBtn route="/" :active="isActive('/')">
+          <span v-if="isWideEnough">Alex Gonzalez</span>
+          <span v-else>Alex</span></NavBtn>
+        <NavBtn route="/blog" :active="isActive('/blog')" icon="mdi-post-outline">Blog</NavBtn>
+      </v-card>
+    </v-container>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">

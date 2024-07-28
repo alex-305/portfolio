@@ -1,24 +1,26 @@
 <template>
-  <div>
-    <v-card variant="text" class="pa-3">
-      <v-row>
-        <v-col rows="6">
-          <div class="d-flex justify-center">
-            <ProfileCard/>
-          </div>
-        </v-col>
-        <v-col rows="6">
-          <v-expansion-panels variant="accordion">
-            <AboutMeDropdown/>
-            <Education />
-            <ProgrammingSkills />
-            <LifeSkills/>
-            <HobbiesDropdown/>
-          </v-expansion-panels>
-        </v-col>
-      </v-row>
-    </v-card>
-  </div>
+  <ClientOnly>
+    <div>
+      <v-card variant="text" class="pa-3">
+        <v-row>
+          <v-col rows="6">
+            <div class="d-flex justify-center">
+              <ProfileCard/>
+            </div>
+          </v-col>
+          <v-col rows="6">
+            <v-expansion-panels variant="accordion">
+              <AboutMeDropdown/>
+              <Education />
+              <ProgrammingSkills />
+              <LifeSkills/>
+              <HobbiesDropdown/>
+            </v-expansion-panels>
+          </v-col>
+        </v-row>
+      </v-card>
+    </div>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
