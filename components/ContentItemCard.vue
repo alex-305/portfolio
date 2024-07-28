@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-card class="mx-auto" elevation="5">
-        <v-hover v-if="props.link" v-slot:default="{ isHovering, props: HoverProps }">
+        <v-hover v-if="props.link!==''" v-slot:default="{ isHovering, props: HoverProps }">
           <v-card link v-bind="HoverProps" class="mx-auto rounded-0">
             <slot></slot>
             <v-overlay
@@ -11,8 +11,8 @@
               contained
               absolute
             >
-              <v-btn class="px-3" color="tertiary" :target="newTab ?'_blank' : '_self'" :href="props.to" prepend-icon="mdi-eye-outline"
-                >View</v-btn
+              <v-btn class="px-3" color="tertiary" :target="newTab ?'_blank' : '_self'" :href="props.to" :prepend-icon="props.linkIcon"
+                >{{ props.link }}</v-btn
               >
             </v-overlay>
           </v-card>
@@ -34,14 +34,16 @@
 const props = withDefaults(
   defineProps<{
     tags: string[]
-    link?: boolean
+    link?: string
     to?: string
     newTab?: boolean
+    linkIcon?: string
   }>(),
   {
-    link: false,
+    link: '',
     newTab: false,
-    to: ''
+    to: '',
+    linkIcon: ''
   }
 )
 </script>

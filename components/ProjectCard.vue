@@ -1,6 +1,11 @@
 <template>
   <div>
-    <ContentItemCard :link="props.item.link!=''" :to="props.item.link" newTab :tags="props.item.tags">
+    <ContentItemCard 
+    :link="props.item.link !== '' ? 'View' : ''" 
+    :to="props.item.link" 
+    newTab 
+    :linkIcon="props.item.link!== '' ? 'mdi-eye-outline' : ''"
+    :tags="props.item.tags">
       <v-img
         class="mx-auto w-100"
         height="200"
