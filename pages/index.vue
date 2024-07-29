@@ -22,9 +22,9 @@
               </v-expansion-panels>
             </v-card>
           </v-col>
-          <div class="d-md-none pa-0 pb-5">
-            <SocialsComponent/>
-          </div>
+          <v-row class="d-md-none pa-0 pb-5 w-100 ma-0">
+            <SocialsComponent class="w-100"/>
+          </v-row>
         </v-row>
       </v-card>
     </div>
