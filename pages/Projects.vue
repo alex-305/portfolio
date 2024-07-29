@@ -1,13 +1,13 @@
 <template>
   <div>
     <v-row v-if="dataLoaded && projects.length!=0">
-      <v-col v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4">
+      <v-col v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4" lg="3" xl="2">
         <ProjectCard :item="item" />
       </v-col>
     </v-row>
     <div style="color: red;" v-else-if="errorOccured">Error occured.</div>
     <v-row class="d-flex justify-center" v-else>
-      <v-col v-for="i in 6" :key="i" cols="12" sm="6" md="4">
+      <v-col v-for="i in 6" :key="i" cols="12" sm="6" md="4" lg="2" xl="1">
         <v-skeleton-loader height="250" width="350"></v-skeleton-loader>
       </v-col>
     </v-row>
