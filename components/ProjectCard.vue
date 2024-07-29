@@ -12,7 +12,11 @@
         cover
         width="300"
         :src="props.item.coverImageURL"
-      ></v-img>
+      >
+        <template class="d-flex align-center justify-center" v-slot:placeholder>
+            <v-progress-circular class="h-100 w-100" indeterminate color="primary" size="100" width="10"/>
+        </template>
+    </v-img>
       <div class="d-flex position-relative justify-center">
         <div 
         class="d-flex justify-center position-absolute px-0 pt-auto ma-0 w-100"
