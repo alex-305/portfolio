@@ -7,7 +7,7 @@
             <div class="d-flex justify-center">
               <ProfileCard/>
             </div>
-            <div class="mt-10">
+            <div class="mt-10 hidden-sm-and-down">
               <SocialsComponent/>
             </div>
           </v-col>
@@ -22,6 +22,9 @@
               </v-expansion-panels>
             </v-card>
           </v-col>
+          <div class="d-md-none pa-0 pb-5">
+            <SocialsComponent/>
+          </div>
         </v-row>
       </v-card>
     </div>
