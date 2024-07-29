@@ -2,17 +2,19 @@
   <div class="mt-3">
     <v-footer class="ax-0" color="primary">
       <v-row justify="center" no-gutters>
-        <v-btn
-          class="mx-2"
-          target="_blank"
-          href="mailto:alexgonzdev@proton.me"
-          color="white"
-          rounded="xl"
-          variant="text"
-          prepend-icon="mdi-email-outline"
-        >
-          alexgonzdev@proton.me
-        </v-btn>
+        <v-col class="text-center">
+          <v-btn
+            class="mx-2"
+            target="_blank"
+            href="mailto:alexgonzdev@proton.me"
+            color="white"
+            rounded="xl"
+            variant="text"
+            prepend-icon="mdi-email-outline"
+          >
+            alexgonzdev@proton.me
+          </v-btn>
+        </v-col>
         <v-col class="text-center mt-4" cols="12">
           {{ new Date().getFullYear() }} — <strong>Alex Gonzalez</strong
           ><a

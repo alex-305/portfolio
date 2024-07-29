@@ -10,8 +10,8 @@
     <div v-else-if="errorOccured" style="color: red;">Error occured.</div>
     <div v-else>
       <v-row>
-        <v-col v-for="i in articlesPerPage" :key="i">
-          <v-skeleton-loader height="300" width="500"></v-skeleton-loader>
+        <v-col v-for="i in articlesPerPage" :key="i" cols="12" sm="6" md="4" lg="3" xl="2">
+          <v-skeleton-loader height="200" width="300"></v-skeleton-loader>
         </v-col>
       </v-row>
     </div>
