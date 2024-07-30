@@ -1,5 +1,6 @@
 <template>
     <ContentItemCard 
+    chipStore="blog"
     link="Read" 
     :to="props.post.path"
     linkIcon="mdi-page-next-outline"

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ChipContainer class="w-100" chipClass="my-1" variant="tonal" removable storeSrc="project"/>
     <v-row v-if="dataLoaded && projects.length!=0">
       <v-col v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4" lg="3" xl="2">
         <ProjectCard :item="item" />
@@ -17,9 +18,10 @@
 
 <script setup lang="ts">
 import ProjectCard from '~/components/ProjectCard.vue';
+import ChipContainer from '~/components/ChipContainer.vue';
 import type { PortfolioItem } from '../types/PortfolioItem';
 
-
+const selectedChips:Ref<string[]> = ref([])
 const projects:Ref<PortfolioItem[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)

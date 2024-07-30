@@ -1,6 +1,7 @@
 <template>
   <div>
     <ContentItemCard 
+    chipStore="project"
     :link="props.item.link !== '' ? 'View' : ''" 
     :to="props.item.link" 
     newTab 

@@ -20,9 +20,8 @@
         <v-card class="mx-auto rounded-false" v-else><slot></slot></v-card>
         <div class="noscrollbar bg-surface-light overflow-x-auto" style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
           <div class="d-inline-flex">
-            <v-card-text>Tags:</v-card-text>
-              <v-chip color="tertiary" class="ma-auto ml-0 mr-2" v-for="tag in props.tags" :key="tag">
-                {{ tag }}</v-chip>
+            <v-card-text class="pl-2 pr-0">Tags:</v-card-text>
+            <ChipContainer selectable :store="props.chipStore" :chips="props.tags"/>
           </div>
         </div>
       </v-card>
@@ -38,12 +37,14 @@ const props = withDefaults(
     to?: string
     newTab?: boolean
     linkIcon?: string
+    chipStore?: "project" | "blog" | null
   }>(),
   {
     link: '',
     newTab: false,
     to: '',
-    linkIcon: ''
+    linkIcon: '',
+    chipStore: null,
   }
 )
 </script>
