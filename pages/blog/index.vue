@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row v-if="dataLoaded">
-      <v-col class="" v-for="post in posts" :key="post.title+post.date" cols="12" sm="6" md="4" >
+      <v-col class="" v-for="post in posts" :key="post.title+post.date" cols="12" sm="6" md="4" lg="3" xl="2" >
         <div>
           <BlogCard :post="post" />
         </div>
@@ -10,8 +10,8 @@
     <div v-else-if="errorOccured" style="color: red;">Error occured.</div>
     <div v-else>
       <v-row>
-        <v-col v-for="i in articlesPerPage" :key="i">
-          <v-skeleton-loader height="300" width="500"></v-skeleton-loader>
+        <v-col v-for="i in articlesPerPage" :key="i" cols="12" sm="6" md="4" lg="3" xl="2">
+          <v-skeleton-loader height="200" width="300"></v-skeleton-loader>
         </v-col>
       </v-row>
     </div>
@@ -25,7 +25,7 @@
 import BlogCard from '~/components/BlogCard.vue';
 import type { BlogPost } from '../../types/BlogPost'
 
-const articlesPerPage = 4
+const articlesPerPage = 12
 const pageNum = ref(1)
 const blogCount = ref(0)
 
@@ -51,7 +51,7 @@ const refetch = async() => {
 const fetchData = async():Promise<BlogPost[]> => {
   errorOccured.value = false
   dataLoaded.value = false
-  const data = await queryContent('blog').skip(articlesPerPage*(pageNum.value-1)).limit(articlesPerPage).find()
+  const data = await queryContent('blog').sort({date: -1}).skip(articlesPerPage*(pageNum.value-1)).limit(articlesPerPage).find()
 
   if(data && Array.isArray(data)) {
     return data.map((item:any) => ({
