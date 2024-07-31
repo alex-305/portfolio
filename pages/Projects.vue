@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ChipContainer class="w-100" chipClass="my-1" variant="tonal" removable storeSrc="project"/>
+    <SearchContent storeSrc="project"/>
+    <!-- <ChipContainer class="w-100" chipClass="my-1" variant="tonal" removable storeSrc="project"/> -->
     <div v-if="errorOccured" class="text-h2" style="color: #F44336;">Error occured.</div>
     <v-row>
       <v-col v-if="dataLoaded" v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4" lg="3" xl="2">

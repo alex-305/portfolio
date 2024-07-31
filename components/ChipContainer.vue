@@ -1,6 +1,6 @@
 <template>
     <v-card :variant="props.variant" class="d-inline-flex">
-        <v-chip 
+        <v-chip
         v-for="(chip, index) in chips" 
         :closable="removable" 
         :link="selectable" 
@@ -61,7 +61,6 @@ const getStoreArray = (str:string):string[] | null => {
 }
 
 onBeforeMount(() => {
-    console.log("CHIP CLASS: " + props.chipClass)
     const chipsFromStore = getStoreArray(props.storeSrc ?? '')
     chips.value = chipsFromStore ?? props.chips ?? []
 
