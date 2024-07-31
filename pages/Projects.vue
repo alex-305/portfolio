@@ -1,18 +1,17 @@
 <template>
   <div>
     <ChipContainer class="w-100" chipClass="my-1" variant="tonal" removable storeSrc="project"/>
-    <v-row v-if="dataLoaded && projects.length!=0">
-      <v-col v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4" lg="3" xl="2">
+    <div v-if="errorOccured" class="text-h2" style="color: #F44336;">Error occured.</div>
+    <v-row>
+      <v-col v-if="dataLoaded" v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4" lg="3" xl="2">
         <ProjectCard :item="item" />
       </v-col>
-    </v-row>
-    <div style="color: red;" v-else-if="errorOccured">Error occured.</div>
-    <v-row v-else-if="projects.length!=0">
-      <v-col v-for="i in 6" :key="i" cols="12" sm="6" md="4" lg="3" xl="2">
-        <v-skeleton-loader height="250" width="350"/>
+      <v-col v-else v-for="_ in 24" cols="12" sm="6" md="4" lg="3" xl="2">
+        <div class="d-flex justify-center align-center h-100">
+          <v-skeleton-loader class="w-90 h-90" width="300" height="250"/>
+        </div>
       </v-col>
     </v-row>
-    <div v-else>No projects yet.</div>
   </div>
 </template>
 
