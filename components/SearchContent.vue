@@ -1,15 +1,17 @@
 <template>
-    <v-card variant="text" elevation="2">
+    <v-card variant="text" elevation="2" class="px-2">
         <v-row>
-            <v-col cols="10" class="d-flex align-center">
-                <div>
+            <v-col xl="11" lg="9" md="8" sm="6" xs="4" class="d-flex align-center">
+                <div
+                class="noscrollbar overflow-x-auto" 
+                style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
                     <ChipContainer chipClass="my-1" removable :storeSrc="props.storeSrc"/>
                 </div>
                 <div v-if="chips.length > 0">
                     <v-btn @click="clearStore" prepend-icon="mdi-close" variant="text">Clear all</v-btn>
                 </div>
             </v-col>
-            <v-col cols="2" class="pt-3 pb-0">
+            <v-col xl="1" lg="3" md="4" sm="6" xs="8" class="pt-3 pb-0">
                 <v-text-field
                     class="mr-2"
                     label="Search"
@@ -53,3 +55,10 @@ onBeforeMount(() => {
 })
 
 </script>
+
+<style scoped>
+.noscrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+</style>
