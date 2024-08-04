@@ -34,6 +34,7 @@
 <script setup lang="ts">
 import ContentItemCard from './ContentItemCard.vue';
 import type { PortfolioItem } from '../types/PortfolioItem'
+
 const props = defineProps<{
   item: PortfolioItem
 }>()

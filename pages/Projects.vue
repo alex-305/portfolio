@@ -1,7 +1,6 @@
 <template>
   <div>
     <SearchContent storeSrc="project"/>
-    <!-- <ChipContainer class="w-100" chipClass="my-1" variant="tonal" removable storeSrc="project"/> -->
     <div v-if="errorOccured" class="text-h2" style="color: #F44336;">Error occured.</div>
     <v-row>
       <v-col v-if="dataLoaded" v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4" lg="3" xl="2">
@@ -18,13 +17,24 @@
 
 <script setup lang="ts">
 import ProjectCard from '~/components/ProjectCard.vue';
-import ChipContainer from '~/components/ChipContainer.vue';
 import type { PortfolioItem } from '../types/PortfolioItem';
+import { useFilterStore } from '~/stores/filterStore';
 
-const selectedChips:Ref<string[]> = ref([])
+const store = useFilterStore()
+
+const filter = store.projectsFilter
 const projects:Ref<PortfolioItem[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
+
+watch(filter, async(newFilter, oldFilter) => {
+  try {
+    console.log("NEW")
+    projects.value = await fetchData()
+  } catch(error) {
+    console.error(error)
+  }
+})
 
 const fetchData = async() => {
   const data = await queryContent('/projects').findOne()

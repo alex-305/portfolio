@@ -25,6 +25,9 @@
 <script setup lang="ts">
 import BlogCard from '~/components/BlogCard.vue';
 import type { BlogPost } from '../../types/BlogPost'
+import { useFilterStore } from '~/stores/filterStore';
+
+const filter = useFilterStore().blogFilter
 
 const articlesPerPage = 12
 const pageNum = ref(1)
@@ -33,6 +36,14 @@ const blogCount = ref(0)
 const posts: Ref<BlogPost[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
+
+watch(filter, async(newFilter, oldFilter) => {
+  try {
+    refetch()
+  } catch(error) {
+    console.error(error)
+  }
+})
 
 const pageCount = computed(() => {
   const pageCount = Math.ceil(blogCount.value/articlesPerPage)
@@ -52,7 +63,13 @@ const refetch = async() => {
 const fetchData = async():Promise<BlogPost[]> => {
   errorOccured.value = false
   dataLoaded.value = false
-  const data = await queryContent('blog').sort({date: -1}).skip(articlesPerPage*(pageNum.value-1)).limit(articlesPerPage).find()
+  const data = await queryContent('blog')
+    .where({ 'title': { $icontains: filter.query ?? "" } })
+    .where({ 'tags': { $contains: filter.tags } })
+    .sort({date: -1})
+    .skip(articlesPerPage*(pageNum.value-1))
+    .limit(articlesPerPage)
+    .find()
 
   if(data && Array.isArray(data)) {
     return data.map((item:any) => ({

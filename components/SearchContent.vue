@@ -5,14 +5,19 @@
                 <div
                 class="noscrollbar overflow-x-auto" 
                 style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
-                    <ChipContainer chipClass="my-1" removable :storeSrc="props.storeSrc"/>
+                    <ChipContainer 
+                    :chips="filter.tags as string[]" 
+                    chipClass="my-1" 
+                    removable 
+                    @remove="remove"/>
                 </div>
-                <div v-if="chips.length > 0">
+                <div v-if="(filter?.tags as string[]).length > 0">
                     <v-btn @click="clearStore" prepend-icon="mdi-close" variant="text">Clear all</v-btn>
                 </div>
             </v-col>
             <v-col xl="1" lg="3" md="4" sm="6" xs="8" class="pt-3 pb-0">
                 <v-text-field
+                    v-model="filter.query"
                     class="mr-2"
                     label="Search"
                     prepend-inner-icon="mdi-magnify"
@@ -26,32 +31,38 @@
 
 <script setup lang="ts">
 import ChipContainer from '@/components/ChipContainer.vue';
-import { useChipsStore } from '#imports';
-const store = useChipsStore()
-const chips:Ref<string[]> = ref([])
-const props = defineProps<{
-    storeSrc: "project" | "blog" | null
-}>()
+import { useFilterStore } from '~/stores/filterStore';
+import type { Filter } from '~/types/Filter';
+const store = useFilterStore()
 
-const getStoreArray = (str:string):string[] | null => {
-    switch(str) {
-        case "project":
-            return store.chips.projects
-        case "blog":
-            return store.chips.blogs
-        default:
-            return null
-    }
+let filter = ref<Filter>({
+    query: "",
+    tags: []
+})
+
+const props = withDefaults(defineProps<{
+    storeSrc: "project" | "blog" | ""
+}>(),
+{
+    storeSrc: ""
+})
+
+const remove = (_:string, index:number) => {
+    filter.value?.tags.splice(index,1)
 }
 
 const clearStore = () => {
-    if (chips.value) {
-        chips.value.length = 0
+    if(filter.value?.tags) {
+        filter.value.tags.length = 0
     }
 }
 
 onBeforeMount(() => {
-    chips.value = getStoreArray(props.storeSrc ?? '') ?? []
+    const f = store.getFilter(props.storeSrc)
+    if(f) {
+        filter = f
+    }
+
 })
 
 </script>

@@ -21,7 +21,7 @@
         <div class="noscrollbar bg-surface-light overflow-x-auto" style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
           <div class="d-inline-flex">
             <v-card-text class="pl-2 pr-0">Tags:</v-card-text>
-            <ChipContainer selectable :store="props.chipStore" :chips="props.tags"/>
+            <ChipContainer selectable @select="addToStore" :chips="props.tags"/>
           </div>
         </div>
       </v-card>
@@ -30,6 +30,11 @@
 </template>
 
 <script setup lang="ts">
+import { useFilterStore } from '@/stores/filterStore';
+import type { Filter } from '~/types/Filter';
+
+const store = useFilterStore()
+let filter = ref<Filter>()
 const props = withDefaults(
   defineProps<{
     tags: string[]
@@ -47,6 +52,19 @@ const props = withDefaults(
     chipStore: null,
   }
 )
+
+onBeforeMount(() => {
+  const f = store.getFilter(props.chipStore as string)
+  if(f) {
+    filter = f
+  }
+})
+
+const addToStore = (chip:string, index:number) => {
+  console.log(chip)
+  filter.value?.tags.push(chip)
+}
+
 </script>
 
 <style scoped>
