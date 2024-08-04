@@ -47,8 +47,9 @@ const props = withDefaults(defineProps<{
     storeSrc: ""
 })
 
-const remove = (_:string, index:number) => {
-    filter.value?.tags.splice(index,1)
+const remove = (chip:string, index:number) => {
+    filter.value.tags.splice(index,1)
+    console.log("hello: "+filter.value.tags)
 }
 
 const clearStore = () => {

@@ -6,7 +6,8 @@
         :link="selectable" 
         color="tertiary"
         :class="['ma-auto', 'mx-1', props.chipClass]"
-        @click="chipAction(chip, index)"> {{ chip }}</v-chip>
+        @click="emits('select', chip, index)"
+        @click:close="emits('remove', chip, index)"> {{ chip }}</v-chip>
     </v-card>
 </template>
 
@@ -17,13 +18,6 @@ const emits = defineEmits<{
     select: [string, number]
 }>()
 
-const chipAction = (name:string, index:number) => {
-    if(props.selectable) {
-        emits('select', name, index)
-    } else if(props.removable) {
-        emits('remove', name, index)
-    }
-}
 
 const props = withDefaults(
     defineProps<{
