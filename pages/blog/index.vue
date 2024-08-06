@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SearchContent storeSrc="blog"/>
+    <FilterContent storeSrc="blog"/>
     <v-row v-if="dataLoaded">
       <v-col class="" v-for="post in posts" :key="post.title+post.date" cols="12" sm="6" md="4" lg="3" xl="2" >
         <div>
@@ -8,6 +8,9 @@
         </div>
       </v-col>
     </v-row>
+    <div v-else-if="debouncing" class="d-flex justify-center">
+      <v-progress-circular indeterminate color="primary" size="200" width="10"/>
+    </div>
     <div v-else-if="errorOccured" style="color: red;">Error occured.</div>
     <div v-else>
       <v-row>
@@ -26,6 +29,7 @@
 import BlogCard from '~/components/BlogCard.vue';
 import type { BlogPost } from '../../types/BlogPost'
 import { useFilterStore } from '~/stores/filterStore';
+import { debounce } from '~/scripts/debounce';
 
 const filter = useFilterStore().blogFilter
 
@@ -36,6 +40,7 @@ const blogCount = ref(0)
 const posts: Ref<BlogPost[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
+const debouncing = ref(true)
 
 watch(filter, async(newFilter, oldFilter) => {
   try {
@@ -54,15 +59,7 @@ const fetchCount = async() => {
   return await queryContent('blog').count()
 }
 
-const refetch = async() => {
-  posts.value = await fetchData()
-  dataLoaded.value = true
-  
-}
-
 const fetchData = async():Promise<BlogPost[]> => {
-  errorOccured.value = false
-  dataLoaded.value = false
   const data = await queryContent('blog')
     .where({ 'title': { $icontains: filter.query ?? "" } })
     .where({ 'tags': { $contains: filter.tags } })
@@ -83,9 +80,23 @@ const fetchData = async():Promise<BlogPost[]> => {
   }
   return []
 }
-
-onBeforeMount(async() => {
+const debouncedFetch = debounce(fetchData, 300)
+const refetch = async() => {
   try {
+    dataLoaded.value = false
+    errorOccured.value = false
+    posts.value = await debouncedFetch()
+    dataLoaded.value = true
+  } catch(error) {
+    errorOccured.value = true
+    console.error(error)
+  }
+}
+
+const fetch = async() => {
+  try {
+    dataLoaded.value = false
+    errorOccured.value = false
     posts.value = await fetchData()
     blogCount.value = await fetchCount()
     dataLoaded.value = true
@@ -93,6 +104,10 @@ onBeforeMount(async() => {
     errorOccured.value = true
     console.error(error)
   }
+}
+
+onBeforeMount(async() => {
+  fetch()
 })
 </script>
 
