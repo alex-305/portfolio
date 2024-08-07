@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SearchContent storeSrc="project"/>
+    <FilterContent storeSrc="project"/>
     <div v-if="errorOccured" class="text-h2" style="color: #F44336;">Error occured.</div>
     <v-row>
       <v-col v-if="dataLoaded" v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4" lg="3" xl="2">
@@ -29,7 +29,6 @@ const errorOccured = ref(false)
 
 watch(filter, async(newFilter, oldFilter) => {
   try {
-    console.log("NEW")
     projects.value = await fetchData()
   } catch(error) {
     console.error(error)
