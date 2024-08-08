@@ -2,7 +2,7 @@
   <div>
     <FilterContent storeSrc="blog"/>
     <v-row v-if="dataLoaded">
-      <v-col class="" v-for="post in posts" :key="post.title+post.date" cols="12" sm="6" md="4" lg="3" xl="2" >
+      <v-col class="" v-for="post in posts" :key="post.title+post.date" cols="12" sm="12" md="6" lg="4" xl="3" >
         <div>
           <BlogCard :post="post" />
         </div>
@@ -35,12 +35,11 @@ const filter = useFilterStore().blogFilter
 
 const articlesPerPage = 12
 const pageNum = ref(1)
-const blogCount = ref(0)
 
 const posts: Ref<BlogPost[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
-const debouncing = ref(true)
+const debouncing = ref(false)
 
 watch(filter, async(newFilter, oldFilter) => {
   try {
@@ -49,22 +48,28 @@ watch(filter, async(newFilter, oldFilter) => {
     console.error(error)
   }
 })
-
+const articleCount = ref(0)
 const pageCount = computed(() => {
-  const pageCount = Math.ceil(blogCount.value/articlesPerPage)
-  return pageCount
+  return Math.ceil(articleCount.value/articlesPerPage)
 })
 
+const directionValue = computed(() => { return filter.sortDirection==='descending' ? -1 : 1})
+
 const fetchCount = async() => {
-  return await queryContent('blog').count()
+  return await queryContent('blog')
+    .where({ 'title': { $icontains: filter.query ?? "" } })
+    .where({ 'tags': { $contains: filter.tags } })
+    .sort({[filter.sortType]: directionValue.value})
+    .skip(articlesPerPage*(pageNum.value-1))
+    .limit(articlesPerPage)
+    .count()
 }
 
 const fetchData = async():Promise<BlogPost[]> => {
-  const dir = filter.sortDirection==='descending' ? -1 : 1
   const data = await queryContent('blog')
     .where({ 'title': { $icontains: filter.query ?? "" } })
     .where({ 'tags': { $contains: filter.tags } })
-    .sort({[filter.sortType]: dir})
+    .sort({[filter.sortType]: directionValue.value})
     .skip(articlesPerPage*(pageNum.value-1))
     .limit(articlesPerPage)
     .find()
@@ -81,12 +86,13 @@ const fetchData = async():Promise<BlogPost[]> => {
   }
   return []
 }
-const debouncedFetch = debounce(fetchData, 300)
+const debouncedFetch = debounce(fetchData, 300, debouncing)
 const refetch = async() => {
   try {
     dataLoaded.value = false
     errorOccured.value = false
     posts.value = await debouncedFetch()
+    articleCount.value = await fetchCount()
     dataLoaded.value = true
   } catch(error) {
     errorOccured.value = true
@@ -99,7 +105,7 @@ const fetch = async() => {
     dataLoaded.value = false
     errorOccured.value = false
     posts.value = await fetchData()
-    blogCount.value = await fetchCount()
+    articleCount.value = await fetchCount()
     dataLoaded.value = true
   } catch(error) {
     errorOccured.value = true

@@ -5,6 +5,7 @@
         :closable="removable" 
         :link="selectable" 
         :color="color"
+        :prepend-icon="chipIcon"
         :class="['ma-auto', 'mx-1', props.chipClass]"
         @click="emits('select', chip, index)"
         @click:close.stop="emits('remove', chip, index)"> {{ chip }}</v-chip>
@@ -27,13 +28,15 @@ const props = withDefaults(
         variant?: "text" | "tonal"
         chipClass?: string
         color?: string
+        chipIcon?:string
     }>(),
     {
         selectable: false,
         removable: false,
         variant: "text",
         chipClass: "",
-        color: "primary"
+        color: "primary",
+        chipIcon: "mdi-tag-outline"
     }
 )
 

@@ -7,6 +7,7 @@
                 class="noscrollbar overflow-x-auto" 
                 style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
                     <ChipContainer
+                    chipIcon="mdi-tag-outline"
                     color="tertiary"
                     :chips="filter.tags as string[]" 
                     chipClass="my-1" 

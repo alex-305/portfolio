@@ -16,6 +16,15 @@ export const useFilterStore = defineStore('filter',() => {
         && f1.sortType === f2.sortType
     }
 
+    const addChip = (f:Filter, chip:string):boolean => {
+        let success = false
+        if(f.tags.indexOf(chip)===-1) {
+            f.tags.push(chip)
+            success = true
+        }
+        return success
+    }
+
     const isDefault = (fil:Filter):boolean => { return filtersEqual(fil, defaultFilter) }
 
     const getFilter = (str:FilterTypes) => {
@@ -27,6 +36,6 @@ export const useFilterStore = defineStore('filter',() => {
         }
     }
 
-    return { blogFilter, projectsFilter, getFilter, resetFilter, filtersEqual, isDefault }
+    return { blogFilter, projectsFilter, getFilter, resetFilter, filtersEqual, isDefault, addChip }
 
 })
