@@ -7,7 +7,7 @@
         :color="color"
         :class="['ma-auto', 'mx-1', props.chipClass]"
         @click="emits('select', chip, index)"
-        @click:close.capture="emits('remove', chip, index)"> {{ chip }}</v-chip>
+        @click:close.stop="emits('remove', chip, index)"> {{ chip }}</v-chip>
     </v-card>
 </template>
 
