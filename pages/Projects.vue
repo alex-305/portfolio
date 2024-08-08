@@ -12,6 +12,9 @@
         </div>
       </v-col>
     </v-row>
+    <div>
+      <v-pagination v-model="pageNum" @click="fetch" :length="pageCount"></v-pagination>
+    </div>
   </div>
 </template>
 
@@ -19,26 +22,37 @@
 import ProjectCard from '~/components/ProjectCard.vue';
 import type { PortfolioItem } from '../types/PortfolioItem';
 import { useFilterStore } from '~/stores/filterStore';
+import type { ParsedContent } from '@nuxt/content';
+import { debounce } from '~/scripts/debounce';
+import { fetchData, fetchCount } from '~/scripts/fetch';
 
 const store = useFilterStore()
+
+const itemsPerPage = 6
+const pageNum = ref(1)
+const itemCount = ref(0)
 
 const filter = store.projectsFilter
 const projects:Ref<PortfolioItem[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
+const debouncing = ref(false)
+
+const pageCount = computed(() => {
+  return Math.ceil(itemCount.value/itemsPerPage)
+})
 
 watch(filter, async(newFilter, oldFilter) => {
   try {
-    projects.value = await fetchData()
+    await fetch(true)
   } catch(error) {
     console.error(error)
   }
 })
 
-const fetchData = async() => {
-  const data = await queryContent('/projects').findOne()
-  if(data && Array.isArray(data.projects)) {
-    return data.projects.map((item:any) => ({
+const parseProject = (data:ParsedContent[]) => {
+  if(data && Array.isArray(data)) {
+    return data.map((item:any) => ({
       title: item.title,
       coverImageURL: item.coverImageURL,
       tags: item.tags,
@@ -48,11 +62,32 @@ const fetchData = async() => {
   return []
 }
 
+const debouncedFetch = debounce(fetchData, 300, debouncing)
+
+const fetch = async(debounce:boolean = false) => {
+  try {
+    dataLoaded.value = false
+    errorOccured.value = false
+    let data:ParsedContent[]
+    if(debounce) {
+      data = await debouncedFetch('projects', filter, itemsPerPage, pageNum.value)
+    } else {
+      data = await fetchData('projects', filter, itemsPerPage, pageNum.value)
+    }
+    projects.value = parseProject(data)
+    itemCount.value = await fetchCount('projects', filter)
+    dataLoaded.value = true
+  } catch(error) {
+    errorOccured.value = true
+    console.error(error)
+  }
+}
+
 onBeforeMount(async() => {
   try {
     errorOccured.value = false
     dataLoaded.value = false
-    projects.value = await fetchData()
+    fetch()
     dataLoaded.value = true
   } catch(error) {
     errorOccured.value = true
