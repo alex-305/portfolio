@@ -33,10 +33,10 @@
 
 <script setup lang="ts">
 import ContentItemCard from './ContentItemCard.vue';
-import type { PortfolioItem } from '../types/PortfolioItem'
+import type { Project } from '../types/Project'
 
 const props = defineProps<{
-  item: PortfolioItem
+  item: Project
 }>()
 </script>
 

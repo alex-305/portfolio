@@ -1,4 +1,4 @@
-export type PortfolioItem = {
+export type Project = {
   id: number
   title: string
   coverImageURL: string

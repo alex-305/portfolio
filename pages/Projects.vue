@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import ProjectCard from '~/components/ProjectCard.vue';
-import type { PortfolioItem } from '../types/PortfolioItem';
+import type { Project } from '../types/Project';
 import { useFilterStore } from '~/stores/filterStore';
 import type { ParsedContent } from '@nuxt/content';
 import { debounce } from '~/scripts/debounce';
@@ -33,7 +33,7 @@ const pageNum = ref(1)
 const itemCount = ref(0)
 
 const filter = store.projectsFilter
-const projects:Ref<PortfolioItem[]> = ref([])
+const projects:Ref<Project[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
 const debouncing = ref(false)
@@ -57,7 +57,7 @@ const parseProject = (data:ParsedContent[]) => {
       coverImageURL: item.coverImageURL,
       tags: item.tags,
       link: item.link ?? ""
-    })) as PortfolioItem[]
+    })) as Project[]
   }
   return []
 }
