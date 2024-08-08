@@ -34,6 +34,14 @@ export default defineNuxtConfig({
       anchorLinks: {
         depth: 1
       }
+    },
+    highlight: {
+      langs: [
+        'vue',
+        'c',
+        'cpp',
+        'go'
+      ]
     }
   },
 
