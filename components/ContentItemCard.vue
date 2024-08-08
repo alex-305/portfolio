@@ -27,7 +27,8 @@
             selectable 
             color="primary" 
             @select="addToStore" 
-            :chips="props.tags"/>
+            :chips="props.tags"
+            :selectedChips="filter.tags"/>
           <v-snackbar :timeout="800" v-model="errorAdding" color="red" variant="elevated">This tag is already in use.</v-snackbar>
         </div>
       </div>
