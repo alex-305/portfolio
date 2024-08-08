@@ -56,7 +56,8 @@ const parseProject = (data:ParsedContent[]) => {
       title: item.title,
       coverImageURL: item.coverImageURL,
       tags: item.tags,
-      link: item.link ?? ""
+      link: item.link ?? "",
+      date: item.date
     })) as Project[]
   }
   return []

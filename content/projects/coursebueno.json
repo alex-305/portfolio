@@ -1,5 +1,6 @@
 {
     "title": "CourseBueno",
+    "date": "2024-05-01",
     "coverImageURL": "https://i.imgur.com/xtrJe7V.png",
     "tags": ["C#", ".NET", ".NET MAUI"],
     "link": "https://github.com/alex-305/coursebueno"
