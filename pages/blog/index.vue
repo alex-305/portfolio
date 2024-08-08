@@ -60,10 +60,11 @@ const fetchCount = async() => {
 }
 
 const fetchData = async():Promise<BlogPost[]> => {
+  const dir = filter.sortDirection==='descending' ? -1 : 1
   const data = await queryContent('blog')
     .where({ 'title': { $icontains: filter.query ?? "" } })
     .where({ 'tags': { $contains: filter.tags } })
-    .sort({date: -1})
+    .sort({[filter.sortType]: dir})
     .skip(articlesPerPage*(pageNum.value-1))
     .limit(articlesPerPage)
     .find()
