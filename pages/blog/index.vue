@@ -1,22 +1,26 @@
 <template>
   <div>
+    <FilterContent class="mb-3" storeSrc="blog"/>
     <v-row v-if="dataLoaded">
-      <v-col class="" v-for="post in posts" :key="post.title+post.date" cols="12" sm="6" md="4" lg="3" xl="2" >
+      <v-col class="mt-0" v-for="post in posts" :key="post.title+post.date" cols="12" sm="12" md="6" lg="4" xl="3" >
         <div>
           <BlogCard :post="post" />
         </div>
       </v-col>
     </v-row>
-    <div v-else-if="errorOccured" style="color: red;">Error occured.</div>
+    <div v-else-if="debouncing" class="d-flex justify-center">
+      <v-progress-circular indeterminate color="primary" size="200" width="10"/>
+    </div>
+    <div v-else-if="errorOccured" class="text-h3" style="color: red;">Error occured.</div>
     <div v-else>
       <v-row>
-        <v-col v-for="i in articlesPerPage" :key="i" cols="12" sm="6" md="4" lg="3" xl="2">
+        <v-col v-for="i in articlesPerPage" :key="i" cols="12" sm="12" md="6" lg="4" xl="3">
           <v-skeleton-loader height="200" width="300"></v-skeleton-loader>
         </v-col>
       </v-row>
     </div>
     <div>
-      <v-pagination v-model="pageNum" @click="refetch" :length="pageCount"></v-pagination>
+      <v-pagination v-model="pageNum" @click="fetch" :length="pageCount"></v-pagination>
     </div>
   </div>
 </template>
@@ -24,35 +28,34 @@
 <script setup lang="ts">
 import BlogCard from '~/components/BlogCard.vue';
 import type { BlogPost } from '../../types/BlogPost'
+import { useFilterStore } from '~/stores/filterStore';
+import { debounce } from '~/scripts/debounce';
+import type { ParsedContent } from '@nuxt/content';
+import { fetchData, fetchCount } from '~/scripts/fetch';
+
+const filter = useFilterStore().blogFilter
 
 const articlesPerPage = 12
 const pageNum = ref(1)
-const blogCount = ref(0)
 
 const posts: Ref<BlogPost[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
+const debouncing = ref(false)
 
+watch(filter, async(newFilter, oldFilter) => {
+  try {
+    fetch(true)
+  } catch(error) {
+    console.error(error)
+  }
+})
+const articleCount = ref(0)
 const pageCount = computed(() => {
-  const pageCount = Math.ceil(blogCount.value/articlesPerPage)
-  return pageCount
+  return Math.ceil(articleCount.value/articlesPerPage)
 })
 
-const fetchCount = async() => {
-  return await queryContent('blog').count()
-}
-
-const refetch = async() => {
-  posts.value = await fetchData()
-  dataLoaded.value = true
-  
-}
-
-const fetchData = async():Promise<BlogPost[]> => {
-  errorOccured.value = false
-  dataLoaded.value = false
-  const data = await queryContent('blog').sort({date: -1}).skip(articlesPerPage*(pageNum.value-1)).limit(articlesPerPage).find()
-
+const parseBlog = (data: ParsedContent[]) => {
   if(data && Array.isArray(data)) {
     return data.map((item:any) => ({
       description: item.description,
@@ -66,15 +69,29 @@ const fetchData = async():Promise<BlogPost[]> => {
   return []
 }
 
-onBeforeMount(async() => {
+const debouncedFetch = debounce(fetchData, 300, debouncing)
+
+const fetch = async(debounce:boolean = false) => {
   try {
-    posts.value = await fetchData()
-    blogCount.value = await fetchCount()
+    dataLoaded.value = false
+    errorOccured.value = false
+    let data:ParsedContent[]
+    if(debounce) {
+      data = await debouncedFetch('blog', filter, articlesPerPage, pageNum.value)
+    } else {
+      data = await fetchData('blog', filter, articlesPerPage, pageNum.value)
+    }
+    posts.value = parseBlog(data)
+    articleCount.value = await fetchCount('blog', filter)
     dataLoaded.value = true
   } catch(error) {
     errorOccured.value = true
     console.error(error)
   }
+}
+
+onBeforeMount(async() => {
+  fetch()
 })
 </script>
 

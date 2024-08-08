@@ -1,0 +1,63 @@
+<template>
+    <v-card variant="text" elevation="2" class="px-2">
+        <v-row>
+            <v-col xl="11" lg="9" md="8" sm="6" xs="4" class="d-flex align-center">
+                <SortbyFilter :filter="filter" :storeSrc="storeSrc"/>
+                <div
+                class="noscrollbar overflow-x-auto" 
+                style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
+                    <ChipContainer
+                    chipIcon="mdi-tag-outline"
+                    color="tertiary"
+                    :chips="filter.tags as string[]" 
+                    chipClass="my-1" 
+                    removable 
+                    @remove="remove"/>
+                </div>
+                <div v-if="!isDefaultFilter">
+                    <v-btn @click="store.resetFilter(filter)" prepend-icon="mdi-restore" variant="text">Reset</v-btn>
+                </div>
+            </v-col>
+            <v-col xl="1" lg="3" md="4" sm="6" xs="8" class="pt-3 pb-0">
+                <v-text-field
+                    v-model="filter.query"
+                    class="mr-2"
+                    label="Search"
+                    prepend-inner-icon="mdi-magnify"
+                    clearable
+                    persistent-clear
+                    variant="underlined"/>
+            </v-col>
+        </v-row>
+    </v-card>
+</template>
+
+<script setup lang="ts">
+import ChipContainer from '@/components/ChipContainer.vue';
+import { useFilterStore } from '~/stores/filterStore';
+import type { Filter, FilterTypes } from '~/types/Filter';
+const store = useFilterStore()
+
+const props = withDefaults(defineProps<{
+    storeSrc: FilterTypes
+}>(),
+{
+    storeSrc: "project"
+})
+
+const filter:Ref<Filter> = store.getFilter(props.storeSrc)
+
+const isDefaultFilter = computed(() => { return store.isDefault(filter.value) })
+
+const remove = (chip:string, index:number) => {
+    filter.value.tags.splice(index,1)
+}
+
+</script>
+
+<style scoped>
+.noscrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+</style>

@@ -7,7 +7,7 @@
             {{ post?.title ?? "untitled" }}
         </div>
         <div class="d-flex text-h6 justify-center">
-          By {{ "Alex Gonzalez" }}
+          By {{ "Alex Gonzalez" }} on {{ formatDate(post.date) }}
         </div>
         <div class="py-3">
           <v-divider></v-divider>
@@ -25,6 +25,7 @@
 <script setup lang="ts">
 import type { BlogPost } from '~/types/BlogPost';
 import type { ParsedContent } from '@nuxt/content';
+import { formatDate } from '~/scripts/formatDate';
 
 const { path } = useRoute()
 const post: Ref<BlogPost> = ref<BlogPost>({

@@ -1,6 +1,7 @@
 <template>
   <div>
     <ContentItemCard 
+    chipStore="project"
     :link="props.item.link !== '' ? 'View' : ''" 
     :to="props.item.link" 
     newTab 
@@ -32,9 +33,10 @@
 
 <script setup lang="ts">
 import ContentItemCard from './ContentItemCard.vue';
-import type { PortfolioItem } from '../types/PortfolioItem'
+import type { Project } from '../types/Project'
+
 const props = defineProps<{
-  item: PortfolioItem
+  item: Project
 }>()
 </script>
 

@@ -1,5 +1,6 @@
 <template>
     <ContentItemCard 
+    chipStore="blog"
     link="Read" 
     :to="props.post.path"
     linkIcon="mdi-page-next-outline"
@@ -20,19 +21,10 @@
 <script setup lang="ts">
 import ContentItemCard from './ContentItemCard.vue';
 import type { BlogPost } from '../types/BlogPost'
+import { formatDate } from '~/scripts/formatDate';
 
 const props = defineProps<{
   post: BlogPost
 }>()
-
-const formatDate = (date:Date) => {
-  let d = new Date(date)
-  
-  return d.toLocaleDateString('en-US', {
-    month: 'long',
-    day: '2-digit',
-    year: 'numeric'
-  })
-}
 
 </script>

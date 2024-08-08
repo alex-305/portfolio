@@ -25,7 +25,8 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
   modules: [
-    '@nuxt/content'
+    '@nuxt/content',
+    '@pinia/nuxt'
   ],
 
   content: {

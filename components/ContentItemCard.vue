@@ -1,36 +1,48 @@
 <template>
-  <div>
-    <v-container>
-      <v-card class="mx-auto" elevation="5">
-        <v-hover v-if="props.link!==''" v-slot:default="{ isHovering, props: HoverProps }">
-          <v-card v-bind="HoverProps" class="mx-auto rounded-0">
-            <slot></slot>
-            <v-overlay
-              :model-value="isHovering as boolean"
-              class="align-center justify-center"
-              contained
-              absolute
+  <v-container class="mt-0">
+    <v-card class="mx-auto" elevation="5">
+      <v-hover v-if="props.link!==''" v-slot:default="{ isHovering, props: HoverProps }">
+        <v-card v-bind="HoverProps" class="mx-auto rounded-0">
+          <slot></slot>
+          <v-overlay
+            :model-value="isHovering as boolean"
+            class="align-center justify-center"
+            contained
+            absolute
+          >
+            <v-btn class="px-3" color="tertiary" :target="newTab ?'_blank' : '_self'" :href="props.to" :prepend-icon="props.linkIcon"
+              >{{ props.link }}</v-btn
             >
-              <v-btn class="px-3" color="tertiary" :target="newTab ?'_blank' : '_self'" :href="props.to" :prepend-icon="props.linkIcon"
-                >{{ props.link }}</v-btn
-              >
-            </v-overlay>
-          </v-card>
-        </v-hover>
-        <v-card class="mx-auto rounded-false" v-else><slot></slot></v-card>
-        <div class="noscrollbar bg-surface-light overflow-x-auto" style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
-          <div class="d-inline-flex">
-            <v-card-text>Tags:</v-card-text>
-              <v-chip color="tertiary" class="ma-auto ml-0 mr-2" v-for="tag in props.tags" :key="tag">
-                {{ tag }}</v-chip>
-          </div>
+          </v-overlay>
+        </v-card>
+      </v-hover>
+      <v-card class="mx-auto rounded-false" v-else><slot></slot></v-card>
+      <div class="noscrollbar bg-surface-light overflow-x-auto" style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
+        <div class="d-inline-flex py-2">
+          <v-chip variant="text" class="mx-1 px-2" color="pink" label>
+            <v-icon icon="mdi-label" start/>
+            <span>Tags:</span>
+          </v-chip>
+          <ChipContainer 
+            selectable 
+            color="primary" 
+            @select="addToStore" 
+            :chips="props.tags"/>
+          <v-snackbar :timeout="800" v-model="errorAdding" color="red" variant="elevated">This tag is already in use.</v-snackbar>
         </div>
-      </v-card>
-    </v-container>
-  </div>
+      </div>
+    </v-card>
+  </v-container>
 </template>
 
 <script setup lang="ts">
+import { useFilterStore } from '@/stores/filterStore';
+import type { Filter, FilterTypes } from '~/types/Filter';
+
+const store = useFilterStore()
+
+const errorAdding = ref(false)
+
 const props = withDefaults(
   defineProps<{
     tags: string[]
@@ -38,14 +50,23 @@ const props = withDefaults(
     to?: string
     newTab?: boolean
     linkIcon?: string
+    chipStore?: FilterTypes
   }>(),
   {
     link: '',
     newTab: false,
     to: '',
-    linkIcon: ''
+    linkIcon: '',
+    chipStore: "project",
   }
 )
+
+const filter:Ref<Filter> = store.getFilter(props.chipStore)
+
+const addToStore = (chip:string, index:number) => {
+  errorAdding.value = !store.addChip(filter.value, chip)
+}
+
 </script>
 
 <style scoped>
