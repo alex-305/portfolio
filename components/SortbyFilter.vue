@@ -14,7 +14,7 @@
             variant="text" 
             @click="changeSortDirection" 
             :prepend-icon="'mdi-sort-'+filter.sortDirection">
-            <span class="text-body-2">{{ filter.sortDirection }}</span>
+            <span class="text-body-2">{{ filter.sortDirection.charAt(0).toLocaleUpperCase() + filter.sortDirection.slice(1) }}</span>
             </v-btn>
             <v-radio-group v-model="filter.sortType" label="Options" class="d-flex flex-column pt-2 pb-0">
                 <v-radio value="title" label="Alphabetical"/>
