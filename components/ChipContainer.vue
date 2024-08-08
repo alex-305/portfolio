@@ -4,7 +4,7 @@
         v-for="(chip, index) in props.chips" 
         :closable="removable" 
         :link="selectable" 
-        color="tertiary"
+        :color="color"
         :class="['ma-auto', 'mx-1', props.chipClass]"
         @click="emits('select', chip, index)"
         @click:close.prevent="emits('remove', chip, index)"> {{ chip }}</v-chip>
@@ -26,12 +26,14 @@ const props = withDefaults(
         removable?: boolean
         variant?: "text" | "tonal"
         chipClass?: string
+        color?: string
     }>(),
     {
         selectable: false,
         removable: false,
         variant: "text",
-        chipClass: ""
+        chipClass: "",
+        color: "primary"
     }
 )
 

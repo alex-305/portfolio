@@ -19,9 +19,16 @@
         </v-hover>
         <v-card class="mx-auto rounded-false" v-else><slot></slot></v-card>
         <div class="noscrollbar bg-surface-light overflow-x-auto" style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
-          <div class="d-inline-flex">
-            <v-card-text class="pl-2 pr-0">Tags:</v-card-text>
-            <ChipContainer selectable @select="addToStore" :chips="props.tags"/>
+          <div class="d-inline-flex py-2">
+            <!-- <v-card-text class="pl-2 pr-0">Tags:</v-card-text> -->
+            <v-chip variant="outlined" class="mx-2" color="pink" label>
+              <v-icon icon="mdi-label" start/>Tags
+            </v-chip>
+            <ChipContainer 
+              selectable 
+              color="primary" 
+              @select="addToStore" 
+              :chips="props.tags"/>
           </div>
         </div>
       </v-card>
@@ -31,7 +38,7 @@
 
 <script setup lang="ts">
 import { useFilterStore } from '@/stores/filterStore';
-import type { Filter } from '~/types/Filter';
+import type { Filter, FilterTypes } from '~/types/Filter';
 
 const store = useFilterStore()
 let filter = ref<Filter>()
@@ -42,26 +49,25 @@ const props = withDefaults(
     to?: string
     newTab?: boolean
     linkIcon?: string
-    chipStore?: "project" | "blog" | null
+    chipStore?: FilterTypes
   }>(),
   {
     link: '',
     newTab: false,
     to: '',
     linkIcon: '',
-    chipStore: null,
+    chipStore: "project",
   }
 )
 
 onBeforeMount(() => {
-  const f = store.getFilter(props.chipStore as string)
+  const f = store.getFilter(props.chipStore)
   if(f) {
     filter = f
   }
 })
 
 const addToStore = (chip:string, index:number) => {
-  console.log(chip)
   filter.value?.tags.push(chip)
 }
 

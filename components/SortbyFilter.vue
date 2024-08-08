@@ -13,24 +13,31 @@
             rounded="0" 
             variant="text" 
             @click="changeSortDirection" 
-            :prepend-icon="'mdi-sort-'+sortDirectionString.toLocaleLowerCase()">
-            <span class="text-body-2">{{ sortDirectionString }}</span>
+            :prepend-icon="'mdi-sort-'+filter.sortDirection">
+            <span class="text-body-2">{{ filter.sortDirection }}</span>
             </v-btn>
-            <v-radio-group v-model="sortBy" label="Options" class="d-flex flex-column pt-2 pb-0">
-                <v-radio value="1" label="Alphabetical"/>
-                <v-radio value="2" label="Post Date"/>
+            <v-radio-group v-model="filter.sortType" label="Options" class="d-flex flex-column pt-2 pb-0">
+                <v-radio value="title" label="Alphabetical"/>
+                <v-radio value="date" label="Post Date"/>
             </v-radio-group>
         </v-card>
     </v-menu>
 </template>
 
 <script setup lang="ts">
-const descendingSort = ref(true)
+import type { Filter, FilterTypes } from '@/types/Filter'
+import { useFilterStore } from '@/stores/filterStore';
+const store = useFilterStore()
+const props = withDefaults(defineProps<{
+    storeSrc: FilterTypes,
+    filter: Filter
+}>(),
+{
+    storeSrc: "project"
+})
 
-const sortDirectionString = computed(() => { return descendingSort.value ? 'Descending' : 'Ascending' })
+const filter = store.getFilter(props.storeSrc)
 
-const changeSortDirection = () => { descendingSort.value = !descendingSort.value }
-
-const sortBy = ref("")
+const changeSortDirection = () => { filter.value.sortDirection = filter.value.sortDirection ==='ascending' ? 'descending' : 'ascending'}
 
 </script>
