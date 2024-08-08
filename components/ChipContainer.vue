@@ -3,8 +3,8 @@
         <v-chip
         v-for="(chip, index) in props.chips" 
         :link="selectable" 
-        :color="color"
-        :prepend-icon="chipIcon"
+        :color="getChipColor(chip)"
+        :prepend-icon="getChipIcon(chip)"
         :class="['ma-auto', 'mx-1', props.chipClass]"
         @click="emits('select', chip, index)"> {{ chip }}
             <template v-if="removable" #close>
@@ -25,12 +25,15 @@ const emits = defineEmits<{
 const props = withDefaults(
     defineProps<{
         chips: string[]
+        selectedChips?: string[]
         selectable?: boolean
         removable?: boolean
         variant?: "text" | "tonal"
         chipClass?: string
         color?: string
-        chipIcon?:string
+        chipIcon?: string
+        selectedChipIcon?: string
+        selectedChipColor?: string
     }>(),
     {
         selectable: false,
@@ -38,8 +41,22 @@ const props = withDefaults(
         variant: "text",
         chipClass: "",
         color: "primary",
-        chipIcon: "mdi-tag-outline"
+        chipIcon: "mdi-tag-outline",
+        selectedChipIcon: "mdi-tag-check-outline",
+        selectedChipColor: "tertiary"
     }
 )
+
+const getChipIcon = (chip:string) => {
+    return props.selectedChips?.includes(chip) ?
+        props.selectedChipIcon :
+        props.chipIcon
+}
+
+const getChipColor = (chip:string) => {
+    return props.selectedChips?.includes(chip) ?
+    props.selectedChipColor :
+    props.color
+}
 
 </script>

@@ -42,12 +42,18 @@ const posts: Ref<BlogPost[]> = ref([])
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
 const debouncing = ref(false)
-
+const oldQuery = ref("")
 watch(filter, async(newFilter, oldFilter) => {
   try {
-    fetch(true)
+    if(newFilter.query!==oldQuery.value) {
+      await fetch(true)
+    } else {
+      await fetch()
+    }
   } catch(error) {
     console.error(error)
+  } finally {
+    oldQuery.value = filter.query
   }
 })
 const articleCount = ref(0)

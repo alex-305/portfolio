@@ -1,5 +1,5 @@
 <template>
-    <v-card variant="text" elevation="2" class="px-2">
+    <v-card variant="text" elevation="2" class="px-2 mb-5">
         <v-row>
             <v-col xl="11" lg="9" md="8" sm="6" xs="4" class="d-flex align-center">
                 <SortbyFilter :filter="filter" :storeSrc="storeSrc"/>

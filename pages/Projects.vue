@@ -2,11 +2,16 @@
   <div>
     <FilterContent storeSrc="project"/>
     <div v-if="errorOccured" class="text-h2" style="color: #F44336;">Error occured.</div>
-    <v-row>
-      <v-col v-if="dataLoaded" v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4" lg="3" xl="2">
+    <v-row v-if="dataLoaded">
+      <v-col v-for="item in projects" :key="item.title+item.coverImageURL" cols="12" sm="6" md="4" lg="3" xl="2">
         <ProjectCard :item="item" />
       </v-col>
-      <v-col v-else v-for="_ in 24" cols="12" sm="6" md="4" lg="3" xl="2">
+    </v-row>
+    <div v-else-if="debouncing" class="d-flex justify-center">
+      <v-progress-circular indeterminate color="primary" size="200" width="10"/>
+    </div>
+    <v-row v-else>
+      <v-col v-for="_ in 24" cols="12" sm="6" md="4" lg="3" xl="2">
         <div class="d-flex justify-center align-center h-100">
           <v-skeleton-loader class="w-90 h-90" width="300" height="250"/>
         </div>
@@ -42,11 +47,18 @@ const pageCount = computed(() => {
   return Math.ceil(itemCount.value/itemsPerPage)
 })
 
+const oldQuery = ref("")
 watch(filter, async(newFilter, oldFilter) => {
   try {
-    await fetch(true)
+    if(newFilter.query!==oldQuery.value) {
+      await fetch(true)
+    } else {
+      await fetch()
+    }
   } catch(error) {
     console.error(error)
+  } finally {
+    oldQuery.value = filter.query
   }
 })
 
