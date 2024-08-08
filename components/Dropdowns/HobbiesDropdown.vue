@@ -1,5 +1,5 @@
 <template>
-    <DropDownComponent title="Hobbies" icon="mdi-face-man-shimmer-outline">
+    <DropDownComponent title="Hobbies" icon="mdi-account-heart-outline">
       <v-list>
         <v-list-item prepend-icon="mdi-laptop" title="Programming">Programming is my favorite hobby because it requires both creativity and problem solving in a way that's mentally stimulating and satisfying. I love turning an idea that I came up with in the shower into something that me and my friends can actually use. I love being at the frontier of new technology and programming allows me to do just that by utilizing new software, libraries, and frameworks.</v-list-item>
         <v-list-item prepend-icon="mdi-weight-lifter" title="Exercising">Exercise is a big part of my life not only because it keeps me in shape but also because it helps with my mental state. It keeps my mind sharp and when I don't exercise regularly, I notice that I am less efficient in my other tasks throughout the day.</v-list-item>
