@@ -29,6 +29,9 @@
                     variant="underlined"/>
             </v-col>
         </v-row>
+        <div v-if="props.loading">
+            <v-progress-linear color="tertiary" class="w-100" indeterminate/>
+        </div>
     </v-card>
 </template>
 
@@ -40,9 +43,11 @@ const store = useFilterStore()
 
 const props = withDefaults(defineProps<{
     storeSrc: FilterTypes
+    loading: boolean
 }>(),
 {
-    storeSrc: "project"
+    storeSrc: "project",
+    loading: false
 })
 
 const filter:Ref<Filter> = store.getFilter(props.storeSrc)

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <FilterContent class="mb-3" :storeSrc="filterType"/>
-        <v-row v-if="dataLoaded">
+        <FilterContent :loading="debouncing || !dataLoaded" class="mb-3" :storeSrc="filterType"/>
+        <v-row v-if="dataLoaded || debouncing">
         <v-col class="mt-0" v-for="item in items" :key="item.title+item.date" cols="12" sm="12" md="6" lg="4" xl="3" >
             <div v-if="filterType==='blog'">
                 <BlogCard :item="item as BlogPost" />
@@ -11,9 +11,6 @@
             </div>
         </v-col>
         </v-row>
-        <div v-else-if="debouncing" class="d-flex justify-center">
-        <v-progress-circular indeterminate color="primary" size="200" width="10"/>
-        </div>
         <div v-else-if="errorOccured" class="text-h3" style="color: red;">Error occured.</div>
         <div v-else>
         <v-row>
