@@ -39,4 +39,7 @@ import AboutMeDropdown from '@/components/Dropdowns/AboutMeDropdown.vue';
 import Education from '@/components/Dropdowns/EduDropdown.vue';
 import LifeSkills from '@/components/Dropdowns/LifeSkills.vue';
 import ProgrammingSkills from '@/components/Dropdowns/ProgrammingSkillsDropdown.vue';
+
+useHead({ title: "Alex Gonzalez" })
+
 </script>

@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+useHead({ title: "Alex Gonzalez's projects" })
 </script>
 
 <style scoped></style>
