@@ -20,7 +20,7 @@
         </v-row>
         </div>
         <div>
-        <v-pagination v-model="pageNum" @click="fetch" :length="pageCount"></v-pagination>
+            <v-pagination v-if="pageCount>1" v-model="pageNum" @click="fetch" :length="pageCount"></v-pagination>
         </div>
     </div>
 </template>
