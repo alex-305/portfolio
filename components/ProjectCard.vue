@@ -35,9 +35,13 @@
 import ContentItemCard from './ContentItemCard.vue';
 import type { Project } from '../types/Project'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   item: Project
-}>()
+  loading: boolean
+}>(),
+{
+  loading: false
+})
 </script>
 
 <style scoped>

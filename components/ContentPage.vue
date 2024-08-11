@@ -1,28 +1,20 @@
 <template>
     <div>
         <FilterContent :loading="debouncing || !dataLoaded" class="mb-8" :storeSrc="filterType"/>
-        <v-row v-if="dataLoaded">
-            <v-col class="mt-0" v-for="item in items" :key="item.title+item.date" cols="12" sm="12" md="6" lg="4" xl="3" >
+        <v-row>
+            <v-col class="mt-0" v-for="(item, i) in dataLoaded ? items : itemCount > itemsPerPage ? itemsPerPage : itemCount" :key="i" cols="12" sm="12" md="6" lg="4" xl="3" >
                 <div v-if="filterType==='blog'">
-                    <BlogCard :item="item as BlogPost" />
+                    <BlogCard :loading="!dataLoaded" :item="item as BlogPost" />
                 </div>
                 <div v-else>
-                    <ProjectCard :item="item as Project"/>
+                    <ProjectCard :loading="!dataLoaded" :item="item as Project"/>
                 </div>
             </v-col>
         </v-row>
-        <div v-else-if="errorOccured" class="text-h3" style="color: red;">Error occured.</div>
-        <div v-else>
-        <v-row>
-            <v-col v-for="i in itemCount > itemsPerPage ? itemsPerPage : itemCount" :key="i" cols="12" sm="12" md="6" lg="4" xl="3">
-            <v-skeleton-loader height="200" width="300"></v-skeleton-loader>
-            </v-col>
-        </v-row>
-        </div>
-        <div class="text-body-1 text-center">
-                <span v-if="itemCount!=0">{{ itemCount }}</span>
-                <span v-else>No</span>
-                results found.
+        <div v-if="!store.isDefault(filter)" class="text-body-1 text-center">
+            <span v-if="itemCount!=0">{{ itemCount }}</span>
+            <span v-else>No</span>
+            results found.
         </div>
         <div>
             <v-pagination v-if="pageCount>1" v-model="pageNum" @click="fetch" :length="pageCount"></v-pagination>
