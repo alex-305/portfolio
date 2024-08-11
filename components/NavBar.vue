@@ -7,9 +7,9 @@
           <span v-if="isWideEnough">Alex Gonzalez</span>
           <span v-else>Alex</span></NavBtn>
         <NavBtn route="/blog" :active="isActive('/blog')" icon="mdi-post-outline">Blog</NavBtn>
-        <div v-if="btnWideEnough" class="position-absolute right-0 pa-1">
+        <!-- <div v-if="btnWideEnough" class="position-absolute right-0 pa-1">
           <v-btn @click="toggleTheme(theme)" variant="text" class="right-0 pa-0 mr-2" style="font-size: 20px; width: 38px; height: 38px;" icon="mdi-shield-sun"/>
-        </div>
+        </div> -->
       </v-card>
       <div v-if="!btnWideEnough">
         <!-- <v-fab location="bottom right" class="pa-0 mr-2" style="font-size: 20px; width: 38px; height: 38px;" icon="mdi-shield-sun"/> -->
