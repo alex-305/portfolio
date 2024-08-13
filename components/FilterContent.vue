@@ -1,5 +1,5 @@
 <template>
-    <v-card variant="text" elevation="2" class="px-2 mb-5">
+    <v-card variant="text" elevation="2" class="mb-5">
         <v-row>
             <v-col xl="11" lg="9" md="8" sm="6" xs="4" class="d-flex align-center">
                 <SortbyFilter :filter="filter" :storeSrc="storeSrc"/>
@@ -29,8 +29,14 @@
                     variant="underlined"/>
             </v-col>
         </v-row>
-        <div v-if="props.loading">
-            <v-progress-linear color="tertiary" class="w-100" indeterminate/>
+        <div class="position-relative py-0" style="height: 3px;">
+            <v-progress-linear
+            v-if="props.loading"
+            absolute
+            color="tertiary"
+            class="w-100 bottom-0"
+            indeterminate
+        />
         </div>
     </v-card>
 </template>
