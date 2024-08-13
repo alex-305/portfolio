@@ -14,7 +14,7 @@
         <div v-if="!store.isDefault(filter)" class="text-body-1 text-center">
             <span v-if="itemCount!=0">{{ itemCount }}</span>
             <span v-else>No</span>
-            results found.
+            result<span v-if="itemCount > 1">s</span> found.
         </div>
         <div>
             <v-pagination v-if="pageCount>1" v-model="pageNum" @click="fetch" :length="pageCount"></v-pagination>
