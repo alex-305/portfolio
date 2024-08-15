@@ -1,7 +1,7 @@
 <template>
   <v-container class="mt-0">
     <v-card class="mx-auto" elevation="5">
-      <v-hover v-if="props.link!==''" v-slot:default="{ isHovering, props: HoverProps }">
+      <v-hover v-if="props.btnLink!==''" v-slot:default="{ isHovering, props: HoverProps }">
         <v-card v-bind="HoverProps" class="mx-auto rounded-0">
           <slot></slot>
           <v-overlay
@@ -10,13 +10,13 @@
             contained
             absolute
           >
-            <v-btn class="px-3" color="tertiary" :target="newTab ?'_blank' : '_self'" :href="props.to" :prepend-icon="props.linkIcon"
+            <v-btn class="px-3" color="tertiary" :target="newTab ?'_blank' : '_self'" :href="props.btnTo" :prepend-icon="props.linkIcon"
               >{{ props.link }}</v-btn
             >
           </v-overlay>
         </v-card>
       </v-hover>
-      <v-card class="mx-auto rounded-false" v-else><slot></slot></v-card>
+      <v-card :link="props.link" :href="props.to" class="mx-auto rounded-false" v-else><slot></slot></v-card>
       <div class="noscrollbar bg-surface-light overflow-x-auto" style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
         <div class="d-inline-flex py-2">
           <v-chip variant="text" class="mx-1 px-2" color="pink" label>
@@ -52,6 +52,8 @@ const props = withDefaults(
     newTab?: boolean
     linkIcon?: string
     chipStore?: FilterTypes
+    btnLink?: string
+    btnTo?: string
   }>(),
   {
     link: '',
@@ -59,6 +61,8 @@ const props = withDefaults(
     to: '',
     linkIcon: '',
     chipStore: "project",
+    btnLink: '',
+    btnTo: ''
   }
 )
 
