@@ -16,7 +16,7 @@
           </v-overlay>
         </v-card>
       </v-hover>
-      <v-card :link="props.link" :href="props.to" class="mx-auto rounded-false" v-else><slot></slot></v-card>
+      <v-card :link="props.link" :target="newTab ?'_blank' : '_self'" :href="props.to" class="mx-auto rounded-false" v-else><slot></slot></v-card>
       <div class="noscrollbar bg-surface-light overflow-x-auto" style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
         <div class="d-inline-flex py-2">
           <v-chip variant="text" class="mx-1 px-2" color="pink" label>
