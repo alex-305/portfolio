@@ -34,7 +34,7 @@ const post: Ref<BlogPost> = ref<BlogPost>({
     tags: [],
     content: "",
     path: '',
-
+    pin: false
 })
 
 const dataLoaded = ref(false)
