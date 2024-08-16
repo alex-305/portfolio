@@ -4,10 +4,10 @@
         <v-row>
             <v-col class="mt-0" v-for="(item, i) in dataLoaded ? items : itemCount > itemsPerPage ? itemsPerPage : itemCount" :key="i" cols="12" sm="12" md="6" lg="4" xl="3" >
                 <div v-if="filterType==='blog'">
-                    <BlogCard :loading="!dataLoaded" :item="item as BlogPost" />
+                    <BlogCard :pins="filter.pin" :loading="!dataLoaded" :item="item as BlogPost" />
                 </div>
                 <div v-else>
-                    <ProjectCard :loading="!dataLoaded" :item="item as Project"/>
+                    <ProjectCard :pins="filter.pin" :loading="!dataLoaded" :item="item as Project"/>
                 </div>
             </v-col>
         </v-row>

@@ -1,6 +1,7 @@
 <template>
   <v-container class="mt-0">
-    <v-card class="mx-auto" elevation="5" :class="{'pinned': props.pin}">
+    <v-card class="mx-auto" :class="{'pinned': props.pin, 'elevation-10' : !props.pin }">
+      <v-icon color="white" size="x-large" class="position-absolute pinIcon" v-if="props.pin" variant="text" icon="mdi-pin"/>
       <v-hover v-if="props.btnLink!==''" v-slot:default="{ isHovering, props: HoverProps }">
         <v-card v-bind="HoverProps" class="mx-auto rounded-0">
           <slot></slot>
@@ -83,8 +84,15 @@ const addToStore = (chip:string, index:number) => {
 }
 
 .pinned {
-  color: gold;
-  background-color: blue;
+  box-shadow: 0px 8px 16px -2px rgba(167, 158, 0, 0.4), 0px 3px 6px -2px rgba(167, 158, 0, 0.12);
+}
+
+.pinIcon {
+  top: 8px; 
+  right: 8px; 
+  z-index: 10;
+  transform: rotate(45deg);
+  filter: drop-shadow(0 3px 4px #000);
 }
 
 </style>

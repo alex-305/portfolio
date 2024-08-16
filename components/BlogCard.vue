@@ -5,7 +5,7 @@
     :to="props.item.path"
     linkIcon="mdi-page-next-outline"
     :tags="props.item.tags"
-    :pin="props.item.pin">
+    :pin="props.item.pin && props.pins">
       <v-card class="d-flex align-center">
         <div style="height: 200px;" class="d-flex flex-column align-center justify-center pa-auto w-100">
           <v-card-title 
@@ -32,9 +32,11 @@ import { formatDate } from '~/scripts/formatDate';
 const props = withDefaults(defineProps<{
   item: BlogPost
   loading?: boolean
+  pins?: boolean
 }>(),
 {
-  loading: false  
+  loading: false,
+  pins: false
 })
 
 </script>

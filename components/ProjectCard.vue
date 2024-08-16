@@ -7,7 +7,7 @@
     newTab 
     :linkIcon="props.item.link!== '' ? 'mdi-eye-outline' : ''"
     :tags="props.item.tags"
-    :pin="props.item.pin">
+    :pin="props.item.pin && pins">
       <v-img
         class="mx-auto w-100"
         height="200"
@@ -39,9 +39,11 @@ import type { Project } from '../types/Project'
 const props = withDefaults(defineProps<{
   item: Project
   loading: boolean
+  pins?: boolean
 }>(),
 {
-  loading: false
+  loading: false,
+  pins: false
 })
 </script>
 
