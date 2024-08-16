@@ -8,7 +8,10 @@
             icon="mdi-sort" 
             v-bind="props"/>
         </template>
-        <v-card class="pa-3 pb-0" elevation="5" style="background-color: white;">
+        <v-card 
+        class="pa-3 pb-0" 
+        elevation="5" 
+        :style="{ backgroundcolor: getCurrentTheme(theme) ==='light' ? 'white' : 'black' }">
             <v-btn
             rounded="0" 
             variant="text" 
@@ -27,6 +30,10 @@
 <script setup lang="ts">
 import type { Filter, FilterTypes } from '@/types/Filter'
 import { useFilterStore } from '@/stores/filterStore';
+import { getCurrentTheme } from '~/scripts/theme';
+import { useTheme } from 'vuetify';
+
+const theme = useTheme()
 const store = useFilterStore()
 const props = withDefaults(defineProps<{
     storeSrc: FilterTypes,

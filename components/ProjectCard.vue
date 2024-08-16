@@ -6,7 +6,8 @@
     :to="props.item.link" 
     newTab 
     :linkIcon="props.item.link!== '' ? 'mdi-eye-outline' : ''"
-    :tags="props.item.tags">
+    :tags="props.item.tags"
+    :pin="props.item.pin && pins">
       <v-img
         class="mx-auto w-100"
         height="200"
@@ -35,9 +36,15 @@
 import ContentItemCard from './ContentItemCard.vue';
 import type { Project } from '../types/Project'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   item: Project
-}>()
+  loading: boolean
+  pins?: boolean
+}>(),
+{
+  loading: false,
+  pins: false
+})
 </script>
 
 <style scoped>

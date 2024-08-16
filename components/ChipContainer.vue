@@ -6,6 +6,7 @@
         :color="getChipColor(chip)"
         :prepend-icon="getChipIcon(chip)"
         :class="['ma-auto', 'mx-1', props.chipClass]"
+        :variant="getCurrentTheme(theme) === 'light' ? 'tonal' : 'flat'"
         @click="emits('select', chip, index)"> {{ chip }}
             <template v-if="removable" #close>
                 <v-icon icon="mdi-close-circle" @click.stop="emits('remove', chip, index)" />
@@ -15,6 +16,10 @@
 </template>
 
 <script setup lang="ts">
+import { getCurrentTheme } from '@/scripts/theme';
+import { useTheme } from 'vuetify';
+
+const theme = useTheme()
 
 const emits = defineEmits<{
     remove: [string, number],
@@ -28,7 +33,7 @@ const props = withDefaults(
         selectedChips?: string[]
         selectable?: boolean
         removable?: boolean
-        variant?: "text" | "tonal"
+        variant?: "text" | "tonal" | "flat"
         chipClass?: string
         color?: string
         chipIcon?: string

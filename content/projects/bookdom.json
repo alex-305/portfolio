@@ -1,0 +1,8 @@
+{
+    "title": "Bookdom",
+    "date": "2024-04-30",
+    "coverImageURL": "https://i.imgur.com/yTjYTTw.png",
+    "tags": ["Golang", "PostgreSQL", "Nuxt"],
+    "link": "https://github.com/alex-305/bookbackend",
+    "pin": true
+}

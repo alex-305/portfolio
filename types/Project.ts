@@ -5,6 +5,7 @@ export type Project = {
   tags: string[]
   link?: string
   date: Date
+  pin: boolean
 }
 
 export const parseProject = (data:ParsedContent[]) => {
@@ -14,7 +15,8 @@ export const parseProject = (data:ParsedContent[]) => {
       coverImageURL: item.coverImageURL,
       tags: item.tags,
       link: item.link ?? "",
-      date: item.date
+      date: item.date,
+      pin: item.pin ?? false
     })) as Project[]
   }
   return []

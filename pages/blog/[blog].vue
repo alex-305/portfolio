@@ -34,8 +34,9 @@ const post: Ref<BlogPost> = ref<BlogPost>({
     tags: [],
     content: "",
     path: '',
-
+    pin: false
 })
+
 const dataLoaded = ref(false)
 const errorOccured = ref(false)
 
@@ -57,6 +58,7 @@ onBeforeMount(async() => {
     dataLoaded.value = false
     post.value = await fetchData()
     dataLoaded.value = true
+    useHead({ title: post.value.title })
   } catch(error) {
     errorOccured.value = true
     console.error(error)

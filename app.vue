@@ -20,4 +20,10 @@
 <script setup lang="ts">
 import Navbar from './components/NavBar.vue'
 import Footer from './components/FooterComponent.vue'
+import { setThemeFromLocalStorage } from './scripts/theme';
+import { useTheme } from 'vuetify';
+
+onMounted(() => {
+  setThemeFromLocalStorage(useTheme())
+})
 </script>

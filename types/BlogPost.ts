@@ -6,6 +6,7 @@ export type BlogPost = {
   date: Date
   tags: string[]
   path: string
+  pin: boolean
 }
 
 export const parseBlog = (data: ParsedContent[]) => {
@@ -16,7 +17,8 @@ export const parseBlog = (data: ParsedContent[]) => {
       tags: item.tags,
       title: item.title,
       content: item,
-      path: item._path
+      path: item._path,
+      pin: item.pin ?? false
     })) as BlogPost[]
   }
   return []

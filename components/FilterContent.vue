@@ -1,8 +1,16 @@
 <template>
-    <v-card variant="text" elevation="2" class="px-2 mb-5">
+    <v-card variant="text" elevation="2" class="mb-5">
         <v-row>
             <v-col xl="11" lg="9" md="8" sm="6" xs="4" class="d-flex align-center">
                 <SortbyFilter :filter="filter" :storeSrc="storeSrc"/>
+                <v-btn
+                class="pa-0 ma-0" 
+                variant="text" 
+                @click="togglePin"
+                :ripple="false"
+                :icon="pinHover ? filter.pin ? 'mdi-pin-off-outline' : 'mdi-pin-outline' : filter.pin ? 'mdi-pin-outline' : 'mdi-pin-off-outline'"
+                @mouseenter="pinHover = true"
+                @mouseleave="pinHover = false" />
                 <div
                 class="noscrollbar overflow-x-auto" 
                 style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
@@ -29,8 +37,14 @@
                     variant="underlined"/>
             </v-col>
         </v-row>
-        <div v-if="props.loading">
-            <v-progress-linear color="tertiary" class="w-100" indeterminate/>
+        <div class="position-relative py-0" style="height: 3px;">
+            <v-progress-linear
+            v-if="props.loading"
+            absolute
+            color="tertiary"
+            class="w-100 bottom-0"
+            indeterminate
+        />
         </div>
     </v-card>
 </template>
@@ -40,6 +54,13 @@ import ChipContainer from '@/components/ChipContainer.vue';
 import { useFilterStore } from '~/stores/filterStore';
 import type { Filter, FilterTypes } from '~/types/Filter';
 const store = useFilterStore()
+
+const pinHover = ref(false)
+
+const togglePin = () => {
+    filter.value.pin = !filter.value.pin
+    pinHover.value = false
+}
 
 const props = withDefaults(defineProps<{
     storeSrc: FilterTypes

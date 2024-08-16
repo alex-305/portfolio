@@ -2,6 +2,7 @@
 title: "Making my portfolio website"
 tags: ["For Fun", "Javascript", "Vue.js"]
 date: "2024-07-25"
+pin: true
 ---
 
 ### Making of

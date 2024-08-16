@@ -1,7 +1,7 @@
 <template>
   <v-btn
     color="primary"
-    variant="tonal"
+    :variant="getCurrentTheme(theme) === 'light' ? 'tonal' : 'flat'"
     :ripple="false"
     :to="props.route"
     class="mx-3 my-auto"
@@ -14,9 +14,12 @@
 </template>
 
 <script setup lang="ts">
-import { useDisplay } from 'vuetify'
+import { useDisplay, useTheme } from 'vuetify'
+import { getCurrentTheme } from '~/scripts/theme';
 
 const { width } = useDisplay()
+
+const theme = useTheme()
 
 const isWideEnough = computed(() => { return width.value >= 570})
 
