@@ -4,7 +4,8 @@
     link="Read" 
     :to="props.item.path"
     linkIcon="mdi-page-next-outline"
-    :tags="props.item.tags">
+    :tags="props.item.tags"
+    :pin="props.item.pin">
       <v-card class="d-flex align-center">
         <div style="height: 200px;" class="d-flex flex-column align-center justify-center pa-auto w-100">
           <v-card-title 

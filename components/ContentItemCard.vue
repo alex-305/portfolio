@@ -1,6 +1,6 @@
 <template>
   <v-container class="mt-0">
-    <v-card class="mx-auto" elevation="5">
+    <v-card class="mx-auto" elevation="5" :class="{'pinned': props.pin}">
       <v-hover v-if="props.btnLink!==''" v-slot:default="{ isHovering, props: HoverProps }">
         <v-card v-bind="HoverProps" class="mx-auto rounded-0">
           <slot></slot>
@@ -49,6 +49,7 @@ const props = withDefaults(
     tags: string[]
     link?: string
     to?: string
+    pin?: boolean
     newTab?: boolean
     linkIcon?: string
     chipStore?: FilterTypes
@@ -62,7 +63,8 @@ const props = withDefaults(
     linkIcon: '',
     chipStore: "project",
     btnLink: '',
-    btnTo: ''
+    btnTo: '',
+    pin: false
   }
 )
 
@@ -78,6 +80,11 @@ const addToStore = (chip:string, index:number) => {
 
 .noscrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.pinned {
+  color: gold;
+  background-color: blue;
 }
 
 </style>

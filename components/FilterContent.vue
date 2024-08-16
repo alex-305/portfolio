@@ -3,6 +3,14 @@
         <v-row>
             <v-col xl="11" lg="9" md="8" sm="6" xs="4" class="d-flex align-center">
                 <SortbyFilter :filter="filter" :storeSrc="storeSrc"/>
+                <v-btn
+                class="pa-0 ma-0" 
+                variant="text" 
+                @click="togglePin"
+                :ripple="false"
+                :icon="pinHover ? filter.pin ? 'mdi-pin-off-outline' : 'mdi-pin-outline' : filter.pin ? 'mdi-pin-outline' : 'mdi-pin-off-outline'"
+                @mouseenter="pinHover = true"
+                @mouseleave="pinHover = false" />
                 <div
                 class="noscrollbar overflow-x-auto" 
                 style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
@@ -46,6 +54,13 @@ import ChipContainer from '@/components/ChipContainer.vue';
 import { useFilterStore } from '~/stores/filterStore';
 import type { Filter, FilterTypes } from '~/types/Filter';
 const store = useFilterStore()
+
+const pinHover = ref(false)
+
+const togglePin = () => {
+    filter.value.pin = !filter.value.pin
+    pinHover.value = false
+}
 
 const props = withDefaults(defineProps<{
     storeSrc: FilterTypes
