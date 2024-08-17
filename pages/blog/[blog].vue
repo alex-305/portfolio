@@ -19,6 +19,13 @@
             </v-card>
           </div>
         </main>
+        <div>
+          <div class="text-h4 text-center ma-0 pa-0">Comments</div>
+          <div class="py-3">
+            <v-divider/>
+          </div>
+          <CommentSection :path="path"/> 
+        </div>
     </div>
 </template>
 
@@ -26,6 +33,7 @@
 import type { BlogPost } from '~/types/BlogPost';
 import type { ParsedContent } from '@nuxt/content';
 import { formatDate } from '~/scripts/formatDate';
+import CommentSection from '~/components/CommentSection.vue';
 
 const { path } = useRoute()
 const post: Ref<BlogPost> = ref<BlogPost>({
