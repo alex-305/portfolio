@@ -51,6 +51,7 @@ const debouncing = ref(false)
 const oldQuery = ref("")
 
 watch(filter, async(newFilter, oldFilter) => {
+    pageNum.value = 0
     try {
         if(newFilter.query!==oldQuery.value) {
             await fetch(true)
