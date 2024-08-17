@@ -14,6 +14,7 @@ export const useFilterStore = defineStore('filter',() => {
         && JSON.stringify(f1.tags) === JSON.stringify(f2.tags)
         && f1.sortDirection === f2.sortDirection
         && f1.sortType === f2.sortType
+        && f1.pin === f2.pin
     }
 
     const addChip = (f:Filter, chip:string):boolean => {
@@ -25,7 +26,11 @@ export const useFilterStore = defineStore('filter',() => {
         return success
     }
 
-    const isDefault = (fil:Filter):boolean => { return filtersEqual(fil, defaultFilter) }
+    const isDefault = (fil:Filter):boolean => { 
+        const def = filtersEqual(fil, defaultFilter)
+        fil.pin = def ? fil.pin : false
+        return def
+     }
 
     const getFilter = (str:FilterTypes) => {
         switch(str) {
