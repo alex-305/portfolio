@@ -7,7 +7,7 @@
     newTab 
     :linkIcon="props.item.link!== '' ? 'mdi-eye-outline' : ''"
     :tags="props.item.tags"
-    :pin="props.item.pin && pins">
+    :pin="props.item.pin && props.pins">
       <v-img
         class="mx-auto w-100"
         height="200"
