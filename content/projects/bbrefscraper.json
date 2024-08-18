@@ -1,0 +1,7 @@
+{
+    "title": "Basketball-Ref Scraper",
+    "date": "2024-08-18",
+    "coverImageURL": "https://cdn.ssref.net/req/202407291/logos/bbr-logo.svg",
+    "tags": ["Golang", "Web scraping", "Basketball"],
+    "link": "https://github.com/alex-305/basketball-ref-scraper"
+}
