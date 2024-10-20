@@ -1,28 +1,29 @@
 <template>
-    <v-skeleton-loader type="card" class="px-5 pb-5 pt-0 mt-5 mx-5" v-if="!dataLoaded"/>
-    <div v-else class="pa-0">
+    <div class="pa-0">
         <v-card class="px-5 pb-5 pt-0 mt-5 mx-5" elevation="10">
             <v-card-title class="text-h4 d-flex justify-center">Socials</v-card-title>
-            <v-row justify="center">
-                <div v-for="link in links">
-                    <v-col>
-                        <v-tooltip :text="link.name">
-                            <template v-slot:activator="{ props }">
-                                <v-btn
-                                v-bind="props"
-                                color="primary"
-                                :key="link.link"
-                                class="mx-2"
-                                target="_blank"
-                                :href="link.link"
-                                rounded="xl"
-                                :icon="link.icon"
-                                ></v-btn>
-                            </template>
-                        </v-tooltip>
-                    </v-col>
-                </div>
-            </v-row>
+            <v-skeleton-loader :loading="!dataLoaded" type="chip@8">
+              <v-row justify="center">
+                  <div v-for="link in links">
+                      <v-col>
+                          <v-tooltip :text="link.name">
+                              <template v-slot:activator="{ props }">
+                                  <v-btn
+                                  v-bind="props"
+                                  color="primary"
+                                  :key="link.link"
+                                  class="mx-2"
+                                  target="_blank"
+                                  :href="link.link"
+                                  rounded="xl"
+                                  :icon="link.icon"
+                                  ></v-btn>
+                              </template>
+                          </v-tooltip>
+                      </v-col>
+                  </div>
+              </v-row>
+            </v-skeleton-loader>
         </v-card>
     </div>
 </template>
