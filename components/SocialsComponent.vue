@@ -1,5 +1,5 @@
 <template>
-    <v-skeleton-loader type="card" class="px-5 pb-5 pt-0 mt-5 mx-5" v-if="dataLoaded"/>
+    <v-skeleton-loader type="card" class="px-5 pb-5 pt-0 mt-5 mx-5" v-if="!dataLoaded"/>
     <div v-else class="pa-0">
         <v-card class="px-5 pb-5 pt-0 mt-5 mx-5" elevation="10">
             <v-card-title class="text-h4 d-flex justify-center">Socials</v-card-title>
